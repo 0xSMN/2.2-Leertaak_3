@@ -2,7 +2,7 @@ package receiver;
 
 import java.net.*;
 import java.io.*;
-//import java.util.concurrent.*;
+import java.util.*;
 
 class IncommingConn implements Runnable
 {
@@ -17,23 +17,14 @@ class IncommingConn implements Runnable
             String s;
             System.err.println("New worker thread started");
 
-            //lets check if we already accepted maximum number of connections
-            Receiver.mijnSemafoor.probeer();
-
-            PrintWriter pout = new PrintWriter(connection.getOutputStream(), true);
             BufferedReader bin = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-            while ((s = bin.readLine()) != null) {
-                pout.println(s.toUpperCase());
-            }
+            // do usefull stuff
 
             // now close the socket connection
             connection.close();
             System.err.println("Connection closed: workerthread ending");
-            // upping the semaphore.. since the connnection is gone....
-            Receiver.mijnSemafoor.verhoog();
         }
         catch (IOException ioe) { }
-        catch (InterruptedException ie) {}
     }
 }
