@@ -5,24 +5,28 @@ import java.net.Socket;
 import java.util.*;
 
 
-public class Receiver implements Runnable {
+public class Receiver {
     private static final int PORT = 7789;
     private static final int maxnrofConnections=4;
-    private static ArrayList conns = new ArrayList(); // een arraylist om de connections in te bewaren
+    private static int connections = 0; // int to keep track of the number of connections
 
-    public void run() {
+    public static void work() {
         Socket connection;
         try {
             ServerSocket server = new ServerSocket(PORT);
-            System.err.println("MT Server started..bring on the load, to a maximum of: " + maxnrofConnections);
+            System.out.println("Receiver started on port " + PORT);
+            System.out.println("maximum number of connections of: " + maxnrofConnections);
 
             while (true) {
-                if (conns.size() < maxnrofConnections) {
+                if (connections < maxnrofConnections) {
                     connection = server.accept();
                     System.err.println("New connection accepted..handing it over to worker thread");
-                    Thread conn = new Thread(new IncommingConn(connection));
+                    Thread conn = new Thread(new IncomingConn(connection));
                     conn.start();
-                    conns.add(conn);
+                    connections++;
+                }
+                else {
+                    //System.out.println("Maximum number of threads exceeded");
                 }
             }
         }
@@ -30,7 +34,11 @@ public class Receiver implements Runnable {
         catch (java.io.IOException ioe) { }
     }
 
-    public static void addData(){
+    public static synchronized void addData(){
         // do stuff
+    }
+
+    public static synchronized void decConns() { // decreases the number of active connections
+        connections--;
     }
 }
