@@ -20,7 +20,7 @@ public class Receiver {
             while (true) {
                 if (connections < maxnrofConnections) {
                     connection = server.accept();
-                    System.err.println("New connection accepted..handing it over to worker thread");
+                    System.err.println("New connection established");
                     Thread conn = new Thread(new IncomingConn(connection));
                     conn.start();
                     connections++;

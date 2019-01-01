@@ -15,7 +15,6 @@ public class IncomingConn implements Runnable
     public void run() {
         try {
             String s;
-            System.err.println("New worker thread started");
 
             BufferedReader bin = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
@@ -26,10 +25,10 @@ public class IncomingConn implements Runnable
 
             // now close the socket connection
             connection.close();
-            System.err.println("Connection closed: workerthread ending");
+            System.err.println("Connection closed");
 
             Receiver.decConns(); //notifies that the thread is no longer in use by decresing the number of connections
-            // waits for the garbage collections kill the thread
+            // waits for the garbage collection to kill the thread
         }
         catch (IOException ioe) { }
     }
