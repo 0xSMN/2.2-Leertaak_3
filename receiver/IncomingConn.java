@@ -15,12 +15,21 @@ public class IncomingConn implements Runnable
     public void run() {
         try {
             String s;
+            String data = "";
 
             BufferedReader bin = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
             // reads the incoming message and prints it to the console
             while ((s = bin.readLine()) != null) {
-                System.out.println(s);
+                if (s.equals("") && !data.equals("")) {
+                    //data stream was stopped, proses the data
+                    //TODO: proces data
+                    data = "";
+                }
+                else if (!s.equals("")) {
+                    data = data.concat(s);
+                    data = data.concat("\n");
+                }
             }
 
             // now close the socket connection
