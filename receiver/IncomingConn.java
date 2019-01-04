@@ -3,6 +3,7 @@ package receiver;
 import java.net.*;
 import java.io.*;
 import java.util.*;
+import XML.*;
 
 public class IncomingConn implements Runnable
 {
@@ -25,8 +26,10 @@ public class IncomingConn implements Runnable
                 //als dit if statement waar is, dan is er even geen data verzonden, de bestaande data kan worden verwerkt
                 if (!bin.ready() && !data.equals("")) {
                     //TODO: data laten verwerken door XML_parser
-                    System.out.println("data verwerken");
+                    System.err.println("data verwerken");
+                    XML_Parser.ReadXML(data);
                     //TODO: data legen
+                    data = "";
                 }
 
                 if ((s = bin.readLine()) != null) {
