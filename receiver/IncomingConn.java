@@ -27,7 +27,8 @@ public class IncomingConn implements Runnable
                 if (!bin.ready() && !data.equals("")) {
                     //TODO: data laten verwerken door XML_parser
                     System.err.println("data verwerken");
-                    XML_Parser.ReadXML(data);
+                    Measurement[] a = XML_Parser.ReadXML(data);
+                    System.out.println("Measurments: " + a.length);
                     //TODO: data legen
                     data = "";
                 }
