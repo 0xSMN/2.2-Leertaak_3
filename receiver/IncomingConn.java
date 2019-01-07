@@ -25,11 +25,9 @@ public class IncomingConn implements Runnable
 
                 //als dit if statement waar is, dan is er even geen data verzonden, de bestaande data kan worden verwerkt
                 if (!bin.ready() && !data.equals("")) {
-                    //TODO: data laten verwerken door XML_parser
-                    System.err.println("data verwerken");
-                    Measurement[] a = XML_Parser.ReadXML(data);
-                    System.out.println("Measurments: " + a.length);
-                    //TODO: data legen
+                    //data laten verwerken door XML_parser
+                    Receiver.addData(XML_Parser.ReadXML(data));
+                    //data legen
                     data = "";
                 }
 
@@ -48,7 +46,7 @@ public class IncomingConn implements Runnable
 
             System.out.println(data);
 
-            Receiver.decConns(); //notifies that the thread is no longer in use by decresing the number of connections
+            Receiver.decConns(); //notifies that the thread is no longer in use by decreasing the number of connections
             // waits for the garbage collection to kill the thread
         }
         catch (IOException ioe) { }

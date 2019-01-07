@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class XML_Parser {
 
-    public static Measurement[] ReadXML(String data) {
+    public static ArrayList<Measurement> ReadXML(String data) {
         String line;
         ArrayList<Measurement> measurements = new ArrayList<Measurement>();
         ArrayList<String> XMLstack = new ArrayList<String>();
@@ -27,13 +27,16 @@ public class XML_Parser {
 
         try {
             while ((line = reader.readLine()) != null) {
-                line = line.trim();
                 line = line.replace("\n", "");
+                if (line.isEmpty() || line.contains("?")) { // filter out blank lines and information tags
+                    continue;
+                }
+
+//                System.out.println(line);
 
                 if (line.startsWith("<")) { // if true the given line is a tag
                     line = line.replace("<", "");
                     line = line.replace(">", "");
-                    System.out.println("Line: " + line);
                     if (line.contains("/")) { //it is a closing tag
                         if (XMLstack.get(XMLstack.size() - 1).equals(line.replace("/", ""))) {
                             XMLstack.remove(XMLstack.size() -1);
@@ -44,7 +47,7 @@ public class XML_Parser {
                     }
                     else { //it is an opening tag
                         XMLstack.add(line);
-                        System.out.println("added to XML_Stack");
+//                        System.out.println("added to XML_Stack: " + line);
                         if (line.equals("MEASUREMENT")) {
                             measurements.add(new Measurement());
                         }
@@ -59,7 +62,7 @@ public class XML_Parser {
                             try {
                                 measurements.get(measurements.size() - 1).DATETIME = ft.parse(line);
                             }
-                            catch (ParseException e) { }
+                            catch (ParseException e) {System.err.println("Unable to set DATETIME");}
                             break;
                         case "TIME": //Tijd van versturen van deze gegevens, formaat: hh:mm:ss
                             String s[] = line.split(":");
@@ -115,8 +118,6 @@ public class XML_Parser {
         }
         catch (IOException ioe) { }
 
-        Measurement[] array = new Measurement[measurements.size()];
-        array =measurements.toArray(array);
-        return array;
+        return measurements;
     }
 }
