@@ -38,9 +38,6 @@ public class Receiver {
         catch (java.io.IOException ioe) { }
     }
 
-    public static synchronized void addData(){
-        // do stuff
-    }
 
     public static synchronized void decConns() { // decreases the number of active connections
         connections--;
@@ -49,5 +46,12 @@ public class Receiver {
     public static synchronized void addData(ArrayList<Measurement> measurements) {
         data.addAll(measurements);
         System.out.println("Data added, there are now " + data.size() + " measurements");
+    }
+
+    //geeft alle data terug en leegt de arraylist
+    public static ArrayList<Measurement> getData() {
+        ArrayList<Measurement> data2 = new ArrayList<>(data);
+        data.clear();
+        return data2;
     }
 }
