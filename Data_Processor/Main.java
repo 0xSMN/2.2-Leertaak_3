@@ -1,6 +1,6 @@
 import receiver.*;
 
-public class Leertaak_2 {
+public class Main {
 
     public static void main(String[] args) {
 
