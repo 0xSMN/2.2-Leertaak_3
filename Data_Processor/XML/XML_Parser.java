@@ -66,9 +66,9 @@ public class XML_Parser {
                             break;
                         case "TIME": //Tijd van versturen van deze gegevens, formaat: hh:mm:ss
                             String s[] = line.split(":");
-                            int time = Integer.parseInt(s[0]);
-                            time += Integer.parseInt(s[1]);
-                            time += Integer.parseInt(s[2]);
+                            int time = Integer.parseInt(s[0]) * 3600000;
+                            time += Integer.parseInt(s[1]) * 60000;
+                            time += Integer.parseInt(s[2]) * 1000;
                             measurements.get(measurements.size() - 1).DATETIME.setTime(measurements.get(measurements.size() - 1).DATETIME.getTime() + time);
                             break;
                         case "TEMP": //Temperatuur in graden Celsius, geldige waardes van -9999.9 t/m 9999.9 met 1 decimaal

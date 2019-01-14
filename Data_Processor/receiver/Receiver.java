@@ -45,7 +45,7 @@ public class Receiver {
 
     public static synchronized void addData(ArrayList<Measurement> measurements) {
         data.addAll(measurements);
-        System.out.println("Data added, there are now " + data.size() + " measurements");
+//        System.out.println("Data added, there are now " + data.size() + " measurements");
     }
 
     //geeft alle data terug en leegt de arraylist
