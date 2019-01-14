@@ -4,6 +4,7 @@ package XML;
 import java.util.Date;
 
 public class Measurement {
+    private long ID = 1234;
     public int STN;
     public Date DATETIME;
     public float TEMP;
@@ -20,6 +21,7 @@ public class Measurement {
 
     public String GenSendString() { //
         String s = "INSERT ";
+        s = s.concat(ID + ", ");
         s = s.concat(STN + ", ");
         s = s.concat(DATETIME.getTime() + ", ");
         s = s.concat(TEMP + ", ");
@@ -32,7 +34,7 @@ public class Measurement {
         s = s.concat(SNDP + ", ");
         s = s.concat(Integer.toHexString(FRSHTT) + ", "); //TODO: niet dit
         s = s.concat(CLDC + ", ");
-        s = s.concat(WNDDIR + ", ");
+        s = s.concat(Short.toString(WNDDIR));
         return s;
     }
 }
