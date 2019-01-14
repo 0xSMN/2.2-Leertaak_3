@@ -4,3 +4,4 @@ out/*
 .externalToolBuilders/*
 *.iml
 *.csv
+DBname/*

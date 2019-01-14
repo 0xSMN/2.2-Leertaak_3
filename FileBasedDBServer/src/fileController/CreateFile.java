@@ -6,14 +6,14 @@ import java.util.Map;
 
 public class CreateFile {
 
-    String filename = "stored_data.csv";
-
-    public CreateFile() {
+    public CreateFile(String filepath, String filename) {
         BufferedWriter bw = null;
         FileWriter fw = null;
 
         try {
-            File file = new File(filename);
+            new File(filepath).mkdirs();
+            File file = new File(filepath + "\\" + filename);
+            System.out.println(file.toString());
 
             // if file doesnt exists, then create it
             if (!file.exists()) {
@@ -52,12 +52,13 @@ public class CreateFile {
         }
     }
 
-    public void addDataToFile(List<Map<String,String>> data) {
+    public void addDataToFile(String filepath, String filename, List<Map<String,String>> data) {
         BufferedWriter bw = null;
         FileWriter fw = null;
 
         try {
-            File file = new File(filename);
+            new File(filepath).mkdirs();
+            File file = new File(filepath + "\\" + filename);
 
             // if file doesnt exists, then create it
             if (!file.exists()) {
