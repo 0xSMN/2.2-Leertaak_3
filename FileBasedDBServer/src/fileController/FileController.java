@@ -6,12 +6,6 @@ import java.util.*;
 
 public class FileController {
 
-    private static String folderName = "DBname";
-    private static DateFormat yearFormat = new SimpleDateFormat("yyyy");
-    private static DateFormat monthFormat = new SimpleDateFormat("MM");
-    private static DateFormat dayFormat = new SimpleDateFormat("dd");
-    private static DateFormat hourFormat = new SimpleDateFormat("HH");
-
     private FileController() {
         // TODO: check welke files bestaan en save de name in een Array
     }
@@ -44,19 +38,9 @@ public class FileController {
                 }
             }
         }
-        Date date = new Date();
 
-        String filepath = folderName + "\\" +
-                          yearFormat.format(date) + "\\" +
-                          monthFormat.format(date) + "\\" +
-                          dayFormat.format(date);
-        String filename = yearFormat.format(date) + "-" +
-                          monthFormat.format(date) + "-" +
-                          dayFormat.format(date) + "_h" +
-                          hourFormat.format(date) + ".csv";
-
-        CreateFile file = new CreateFile(filepath, filename);
-        file.addDataToFile(filepath, filename, dict);
+        CreateFile file = new CreateFile();
+        file.addDataToFile(dict);
         dict.clear();
     }
 

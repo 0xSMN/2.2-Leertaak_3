@@ -1,5 +1,7 @@
 package fileController;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FileConfig {
@@ -7,6 +9,24 @@ public class FileConfig {
     // All keys receiving from the lightweight server
     public static String[] keys = {"STN", "DATETIME", "TEMP", "DEWP", "STP", "SLP", "VISIB", "WDSP", "PRCP", "SNDP", "FRSHTT", "CLDC", "WNDDIR"};
 
+    private static String folderName = "DBname";
+    private static DateFormat yearFormat = new SimpleDateFormat("yyyy");
+    private static DateFormat monthFormat = new SimpleDateFormat("MM");
+    private static DateFormat dayFormat = new SimpleDateFormat("dd");
+    private static DateFormat hourFormat = new SimpleDateFormat("HH");
+
+    private static Date date = new Date();
+
+    public static String filepath = folderName + "\\" +
+            yearFormat.format(date) + "\\" +
+            monthFormat.format(date) + "\\" +
+            dayFormat.format(date);
+    public static String filename = yearFormat.format(date) + "-" +
+            monthFormat.format(date) + "-" +
+            dayFormat.format(date) + "_h" +
+            hourFormat.format(date) + ".csv";
+
+    /*
     public int STN;         // Station ID
     public String DATETIME; // Datum en tijd van versturen van deze gegevens
     public float TEMP;      // Temparatuur
@@ -20,6 +40,7 @@ public class FileConfig {
     public byte FRSHTT;
     public float CLDC;      // Bewolking in procenten
     public short WNDDIR;    // Windrichting in graden
+    */
 }
 
 /*

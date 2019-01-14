@@ -6,7 +6,9 @@ import java.util.Map;
 
 public class CreateFile {
 
-    public CreateFile(String filepath, String filename) {
+    public CreateFile() {
+        String filepath = FileConfig.filepath;
+        String filename = FileConfig.filename;
         BufferedWriter bw = null;
         FileWriter fw = null;
 
@@ -52,7 +54,9 @@ public class CreateFile {
         }
     }
 
-    public void addDataToFile(String filepath, String filename, List<Map<String,String>> data) {
+    public void addDataToFile(List<Map<String,String>> data) {
+        String filepath = FileConfig.filepath;
+        String filename = FileConfig.filename;
         BufferedWriter bw = null;
         FileWriter fw = null;
 
