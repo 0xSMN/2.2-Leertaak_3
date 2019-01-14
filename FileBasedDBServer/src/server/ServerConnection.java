@@ -1,5 +1,7 @@
 package server;
 
+import fileController.FileController;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -51,7 +53,9 @@ public class ServerConnection extends Thread {
                 }
                 String textIn = din.readUTF();
                 System.out.println(textIn);
-                sendStringToAllClients(textIn);
+                // Send incoming message to the FileController
+                FileController.incomingMessage(textIn);
+                //sendStringToAllClients(textIn);
             }
             din.close();
             dout.close();
