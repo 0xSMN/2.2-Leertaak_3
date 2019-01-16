@@ -1,7 +1,5 @@
 package fileController;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class FileController {
@@ -39,7 +37,7 @@ public class FileController {
                 Map<String,String> currentDictionary = dict.get(dict.size()-1);
 
                 for (int j = 0; j < list.length; j++) {
-                    currentDictionary.put(FileConfig.keys[j], list[j]);
+                    currentDictionary.put(FileConfig.DB_COLUMNS[j], list[j]);
                 }
             }
         }
@@ -49,7 +47,11 @@ public class FileController {
         dict.clear();
     }
 
+    /*
+        Because the files are going to very large, we will scan trough the files
+     */
     private static void ReadDataFromFile(String msg) {
         // TODO: Read from files and send to client
+
     }
 }

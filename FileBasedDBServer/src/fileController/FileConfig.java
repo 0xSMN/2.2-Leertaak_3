@@ -7,9 +7,8 @@ import java.util.Date;
 public class FileConfig {
 
     // All keys receiving from the lightweight server
-    public static String[] keys = {"STN", "DATETIME", "TEMP", "DEWP", "STP", "SLP", "VISIB", "WDSP", "PRCP", "SNDP", "FRSHTT", "CLDC", "WNDDIR"};
+    public static String[] DB_COLUMNS = {"STN", "DATETIME", "TEMP", "DEWP", "STP", "SLP", "VISIB", "WDSP", "PRCP", "SNDP", "FRSHTT", "CLDC", "WNDDIR"};
 
-    private static String folderName = "DBname";
     private static DateFormat yearFormat = new SimpleDateFormat("yyyy");
     private static DateFormat monthFormat = new SimpleDateFormat("MM");
     private static DateFormat dayFormat = new SimpleDateFormat("dd");
@@ -17,11 +16,12 @@ public class FileConfig {
 
     private static Date date = new Date();
 
-    public static String filepath = folderName + "\\" +
+    public static String FOLDER_NAME = "_database_";
+    public static String DYNAMIC_FILE_PATCH = FOLDER_NAME + "\\" +
             yearFormat.format(date) + "\\" +
             monthFormat.format(date) + "\\" +
             dayFormat.format(date);
-    public static String filename = yearFormat.format(date) + "-" +
+    public static String DYNAMIC_FILE_NAME = yearFormat.format(date) + "-" +
             monthFormat.format(date) + "-" +
             dayFormat.format(date) + "_h" +
             hourFormat.format(date) + ".csv";
