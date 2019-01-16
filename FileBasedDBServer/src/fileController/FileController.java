@@ -12,7 +12,12 @@ public class FileController {
 
     public static void incomingMessage(String msg) {
         // TODO: check message for the command (write to file/ read from file)
-        System.out.println("Ingekomen bericht: " + msg);
+        if (msg.contains("INSERT") && msg.contains("GET")) {
+            System.out.println("Not possible!");
+
+            // What to do from here on out?
+            // Could not happen, else change request from client
+        }
 
         if (msg.contains("INSERT")) {
             WriteDataToFile(msg);

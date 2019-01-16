@@ -15,11 +15,12 @@ public class CreateFile {
         try {
             new File(filepath).mkdirs();
             File file = new File(filepath + "\\" + filename);
-            System.out.println(file.toString());
 
             // if file doesnt exists, then create it
             if (!file.exists()) {
                 file.createNewFile();
+            } else {
+                return;
             }
 
             // true = append file
@@ -33,8 +34,7 @@ public class CreateFile {
                     sb.append(',');
                 }
             }
-            sb.append('\n');
-            System.out.println(sb.toString());
+            sb.append(System.getProperty("line.separator"));
             bw.write(sb.toString());
             System.out.println("Done - File init");
 
@@ -66,6 +66,7 @@ public class CreateFile {
 
             // if file doesnt exists, then create it
             if (!file.exists()) {
+                System.out.println("Something went wrong");
                 file.createNewFile();
             }
 
@@ -82,14 +83,12 @@ public class CreateFile {
                         if (j < FileConfig.keys.length - 1) {
                             sb.append(',');
                         } else {
-                            sb.append('\n');
+                            sb.append(System.getProperty("line.separator"));
                         }
                     }
                 }
             }
-            System.out.println(sb.toString());
             bw.write(sb.toString());
-            System.out.println("Done - Added some data to file");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
