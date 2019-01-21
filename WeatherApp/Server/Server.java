@@ -3,7 +3,6 @@ package Server;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.*;
 
 public class Server {
     private static final int PORT = 1234;
@@ -36,26 +35,18 @@ public class Server {
                     }
                 }
 
+                String fileName = getRequestFileName(data);
+
                 // write the reply to the client
                 PrintWriter dataOut = new PrintWriter(connection.getOutputStream());
                 // write the http-html header to the printWriter
-                dataOut.print("HTTP/1.1 200 OK\n");
-                dataOut.print("Content-type:text/html\n");
-                dataOut.print("Connection: close\n");
-                dataOut.println(); // a blank line to indicate the end of the header
+                addHtmlHeader(dataOut);
 
-                // open the HTML file
-                BufferedReader fReader = new BufferedReader(new FileReader("HTML/index.html"));
-                String outLine;
-
-                // write the HTML to the printWriter
-                while ((outLine = fReader.readLine()) != null) {
-                    if (outLine.equals("")) {
-                        continue;
-                    }
-                    System.err.println(outLine.trim());
-                    dataOut.print(outLine.trim() + "\n");
+                if (fileName.equals("/")) { // no specific filename given, using index.html
+                    fileName = "/index.html";
                 }
+
+                addHtmlByFilename(fileName, dataOut);
 
                 // send everything and close the connection
                 dataOut.flush();
@@ -65,5 +56,46 @@ public class Server {
         catch (IOException ioe) {System.err.println("IOException");
         ioe.printStackTrace();
         }
+    }
+
+    private static void addHtmlHeader(PrintWriter pw) {
+        // write the http-html header to the printWriter
+        pw.println("HTTP/1.1 200 OK");
+        pw.println("Content-type:text/html");
+        pw.println("Connection: close");
+        pw.println(); // a blank line to indicate the end of the header
+    }
+
+    private static String getRequestFileName(String header) {
+        int index = header.indexOf("GET"); // locate the keyword "GET"
+        index += 4;
+        String fileName = "";
+        while (header.charAt(index) != ' ') {
+            fileName = fileName += (header.charAt(index));
+            index++;
+        }
+        return fileName;
+    }
+
+    private static boolean addHtmlByFilename(String fileName, PrintWriter pw) {
+        try {
+            // open the HTML file
+            BufferedReader fReader = new BufferedReader(new FileReader("HTML" + fileName));
+            String outLine;
+
+            // write the HTML to the printWriter
+            while ((outLine = fReader.readLine()) != null) {
+                if (outLine.equals("")) {
+                    continue;
+                }
+//                    System.err.println(outLine.trim());
+                pw.println(outLine.trim());
+            }
+        }
+        catch (IOException ex) {
+            return false; // no file was found with the given name, or the file file could not be read
+        }
+
+        return true; // file was read successfully
     }
 }
