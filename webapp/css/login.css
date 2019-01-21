@@ -27,12 +27,6 @@
     height: 50px;
     display: flex;
 }
-.toggle-bar > :first-child {
-    border-right: 1px solid #253443;
-}
-.toggle-bar > :last-child {
-    border-left: 1px solid #253443;
-}
 
 .toggle-login {
     width: 100%;
@@ -43,37 +37,26 @@
     cursor: pointer;
     transition: background 0.3s;
 }
-.toggle-login span,
-.toggle-register span {
+.toggle-login span{
     color: #fff;
     text-transform: uppercase;
     font-family: "Lato", sans-serif;
-}
-.toggle-login:hover,
-.toggle-register:hover {
-    background-color: #425d78;
 }
 
 .active {
     background-color: #2e3192;
 }
 
-.login-body,
-.register-body {
+.login-body{
     width: 100%;
     display: flex;
     flex-direction: column;
 }
-.login-body p,
-.register-body p {
+.login-body p{
     font-size: 0.9em;
     cursor: pointer;
     transition: color 0.2s;
     margin-bottom: 8px;
-}
-.login-body p:hover,
-.register-body p:hover {
-    color: #2f2f2f;
 }
 
 .input-section {
@@ -104,7 +87,7 @@ input.user-input,
 }
 
 .btn:hover {
-    background-color: #425d78;
+    background-color: #cacbe3;
     cursor: pointer;
 }
 
@@ -114,5 +97,5 @@ i {
 }
 
 .user-input:focus {
-    border: 1px solid #aaa;
+    border: 1px solid #cacbe3;
 }

@@ -78,3 +78,24 @@ a {
     position: relative;
     height: 100%;
 }
+
+.title {
+    font-size: 30px;
+    font-family: "Arial";
+    position: relative;
+    left: 350px;
+}
+
+.choices {
+    font-family: Arial;
+    position: relative;
+    top: 40px;
+    left: 350px;
+}
+
+.canvas{
+    background: #ffffff;
+    position: absolute;
+    top: 160px;
+    left: 560px;
+}

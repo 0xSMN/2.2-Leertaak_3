@@ -10,3 +10,11 @@ if ($loggedin) {
 }
 
 include('footer.php');
+
+?>
+
+<html>
+<head>
+    <p class="title">Welcome</p>
+</head>
+<body>

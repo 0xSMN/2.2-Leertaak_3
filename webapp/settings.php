@@ -17,3 +17,11 @@ if ($loggedin) {
 }
 
 include('footer.php');
+
+?>
+
+<html>
+<head>
+    <p class="title">Settings</p>
+</head>
+<body>
