@@ -10,7 +10,7 @@
   <form class="login" action="index.php" method="post">
     <div class="toggle-bar">
       <div class="toggle-login active">
-        <span>Login</span>
+        <span>Weather Application</span>
       </div>
     </div>
     <div class="login-body">

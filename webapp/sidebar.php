@@ -14,9 +14,9 @@
 		</div>
 		<nav class="sidenav">
 			<ul class="sidebar-menu">
-				<li><a href="#">Rainfall</a></li>
-				<li><a href="#">Weather History</a></li>
-				<li><a href="#">Settings</a></li>
+				<li><a href="rainfall.php">Rainfall</a></li>
+				<li><a href="history.php">Weather History</a></li>
+				<li><a href="settings.php">Settings</a></li>
 			</ul>
 			<button class="logout-button"><a href="?logout=1">Logout</a></button>
 		</nav>

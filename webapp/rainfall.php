@@ -1,0 +1,19 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: AnneMarijke
+ * Date: 21-1-2019
+ * Time: 11:33
+ */
+
+include('config.php');
+
+include('header.php');
+
+if ($loggedin) {
+    include('sidebar.php');
+} else {
+    include('login.php');
+}
+
+include('footer.php');

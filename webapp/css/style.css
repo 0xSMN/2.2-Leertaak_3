@@ -1,5 +1,5 @@
 body {
-    background: rgba(138, 164, 190, 0.5);
+    background: rgba(46, 49, 146, 0.25);
 }
 
 a {
@@ -21,9 +21,9 @@ a {
 }
 
 .logout-button {
-    background: #2c3e50;
+    background: #2e3192;
     padding: 10px;
-    font-size: 20px;
+    font-size: 16px;
     color: #fff;
     font-family: Arial;
     border: none;
@@ -47,6 +47,7 @@ a {
     display: block;
     font-size: 15px;
     font-weight: 500;
+    font-family: Arial;
     padding: 15px 15px;
     position: relative;
     white-space: nowrap;
