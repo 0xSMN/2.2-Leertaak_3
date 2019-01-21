@@ -37,16 +37,23 @@ public class Server {
 
                 String fileName = getRequestFileName(data);
 
-                // write the reply to the client
+                // a PrintWriter object to write the reply to the client to
                 PrintWriter dataOut = new PrintWriter(connection.getOutputStream());
-                // write the http-html header to the printWriter
-                addHtmlHeader(dataOut);
+
 
                 if (fileName.equals("/")) { // no specific filename given, using index.html
                     fileName = "/index.html";
                 }
 
-                addHtmlByFilename(fileName, dataOut);
+                if (new File("HTML" + fileName).exists()) {
+                    // write the http-html header to the printWriter
+                    addHtmlHeader(dataOut);
+                    // add the html to the printWriter
+                    addHtmlByFilename(fileName, dataOut);
+                }
+                else {
+                    add404Page(dataOut);
+                }
 
                 // send everything and close the connection
                 dataOut.flush();
@@ -97,5 +104,15 @@ public class Server {
         }
 
         return true; // file was read successfully
+    }
+
+    private static void add404Page(PrintWriter pw) {
+        // write the http-html header to the printWriter
+        pw.println("HTTP/1.1 404 Not Found");
+        pw.println("Content-type:text/html");
+        pw.println("Connection: close");
+        pw.println(); // a blank line to indicate the end of the header
+        pw.print("<h1>404 - Not Found</h1>");
+        pw.print("<p>Congratulations, you broke it</p>");
     }
 }
