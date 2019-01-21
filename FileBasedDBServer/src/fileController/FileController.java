@@ -1,5 +1,8 @@
 package fileController;
 
+import server.ServerConnection;
+
+import java.io.IOException;
 import java.util.*;
 
 public class FileController {
@@ -52,6 +55,18 @@ public class FileController {
      */
     private static void ReadDataFromFile(String msg) {
         // TODO: Read from files and send to client
+
+        String[] data = msg.split("GET ");
+        String gotReturned = "";
+
+        for (int i = 0; i < data.length; i++ ) {
+            try {
+                ReadFile reader = new ReadFile();
+                gotReturned += reader.ReadFromFile(data[i]);
+            } catch (IOException e) {
+                e.getMessage();
+            }
+        }
 
     }
 }
