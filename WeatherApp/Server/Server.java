@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.*;
 
 public class Server {
-    private static final int PORT = 12345;
+    private static final int PORT = 1234;
 
     public static void work() {
         Socket connection;
@@ -37,22 +37,28 @@ public class Server {
                 }
 
                 // write the reply to the client
-                DataOutputStream dataOut = new DataOutputStream(connection.getOutputStream());
-                dataOut.writeUTF("HTTP/1.1 200 OK");
-                dataOut.writeUTF("Content-type:text/html");
-                dataOut.writeUTF("Connection: close");
-                dataOut.writeUTF("<!DOCTYPE html>\n" +
-                        "<html>\n" +
-                        "<head>\n" +
-                        "<title>Page Title</title>\n" +
-                        "</head>\n" +
-                        "<body>\n" +
-                        "\n" +
-                        "<h1>This is a Heading</h1>\n" +
-                        "<p>This is a paragraph.</p>\n" +
-                        "\n" +
-                        "</body>\n" +
-                        "</html> ");
+                PrintWriter dataOut = new PrintWriter(connection.getOutputStream());
+                // write the http-html header to the printWriter
+                dataOut.print("HTTP/1.1 200 OK\n");
+                dataOut.print("Content-type:text/html\n");
+                dataOut.print("Connection: close\n");
+                dataOut.println(); // a blank line to indicate the end of the header
+
+                // open the HTML file
+                BufferedReader fReader = new BufferedReader(new FileReader("HTML/index.html"));
+                String outLine;
+
+                // write the HTML to the printWriter
+                while ((outLine = fReader.readLine()) != null) {
+                    if (outLine.equals("")) {
+                        continue;
+                    }
+                    System.err.println(outLine.trim());
+                    dataOut.print(outLine.trim() + "\n");
+                }
+
+                // send everything and close the connection
+                dataOut.flush();
                 connection.close();
             }
         }
