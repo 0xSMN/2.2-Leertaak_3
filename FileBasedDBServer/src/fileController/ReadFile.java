@@ -21,35 +21,29 @@ public class ReadFile {
             for (int i = 0; i < list.size(); i++) {
                 inputStream = new FileInputStream(list.get(i));
                 sc = new Scanner(inputStream, "UTF-8");
-                while (sc.hasNextLine()) {
+                while (sc.hasNextLine())
+                {
                     String line = sc.nextLine();
-                    // System.out.println(line);
-                    String[] data = line.split(",");
-                    String[] filter = instructions.split(",");
-
-                    if (filter[0].equals(FileConfig.DB_COLUMNS[1])) {
-                        // if not null then it is a date
-                        Date date1 = isThisDateValid(filter[1]);
-                        Date date2 = isThisDateValid(filter[2]);
-                        if (date1 != null && date2 != null) {
-                            //System.out.println(date1);
-                            //System.out.println(date2);
-                            Date date3 = isThisDateValid(data[1]);
-
-                            //System.out.println("DATA: " + date3);
-
-                            if (date3 != null) {
-                                if (date1.compareTo(date3) * date3.compareTo(date2) > 0) {
-                                    tosend.add(line);
-                                    //System.out.println("YESSS!!!!! For the WIN bitches!");
+                    if (!line.contains(FileConfig.DB_COLUMNS[1]))
+                    {
+                        String[] filter = instructions.split(",");
+                        if (filter[0].equals(FileConfig.DB_COLUMNS[1]))
+                        {
+                            Long min_date = stringToLong(filter[1].trim());
+                            Long max_date = stringToLong(filter[2].trim());
+                            if (min_date != -1 && max_date != -1)
+                            {
+                                Long db_date = stringToLong(line.split(",")[1].trim()); // [1] == DATETIME
+                                if (db_date != -1)
+                                {
+                                    if (min_date.compareTo(db_date) * db_date.compareTo(max_date) > 0)
+                                    {
+                                        tosend.add(line);
+                                    }
                                 }
                             }
                         }
                     }
-
-                    // Split line op (,)
-                    // Zet in dictionary? Is dit duur? Anders op gewoon volgorde
-                    // Check op bepaalde positie van KEYS de value met bepaalde waarde van API
                 }
 
                 // note that Scanner suppresses exceptions
@@ -89,24 +83,13 @@ public class ReadFile {
             }
     }
 
-    private Date isThisDateValid(String dateToValidate){
-        dateToValidate = dateToValidate.trim();
-        if(dateToValidate == null || dateToValidate.equals("DATETIME")){
-            return null;
-        }
-
-        SimpleDateFormat sdf = new SimpleDateFormat(FileConfig.DATE_FORMAT);
-        sdf.setLenient(false);
-
+    private Long stringToLong(String data) {
         try {
-            //if not valid, it will throw ParseException
-            Date date = sdf.parse(dateToValidate);
-            //System.out.println("Date : " + date);
-            return date;
-        } catch (ParseException e) {
-            e.printStackTrace();
-            System.out.println("Jupp hier ging iets fout met parsen");
-            return null;
+            return Long.parseLong(data);
+        } catch (NumberFormatException nfe) {
+            System.out.println("ERROR-NumberFormatException: " + nfe.getMessage());
         }
+
+        return new Long(-1);
     }
 }

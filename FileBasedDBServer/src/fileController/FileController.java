@@ -11,7 +11,7 @@ public class FileController {
         // TODO: check welke files bestaan en save de name in een Array
     }
 
-    public static void incomingMessage(String msg) {
+    public static String incomingMessage(String msg) {
         // TODO: check message for the command (write to file/ read from file)
         if (msg.contains("INSERT") && msg.contains("GET")) {
             System.out.println("Not possible!");
@@ -23,10 +23,10 @@ public class FileController {
         if (msg.contains("INSERT")) {
             WriteDataToFile(msg);
         }
-
         if (msg.contains("GET")) {
-            ReadDataFromFile(msg);
+            return ReadDataFromFile(msg);
         }
+        return null;
     }
 
     private static void WriteDataToFile(String msg) {
@@ -53,7 +53,7 @@ public class FileController {
     /*
         Because the files are going to very large, we will scan trough the files
      */
-    private static void ReadDataFromFile(String msg) {
+    private static String ReadDataFromFile(String msg) {
         // TODO: Read from files and send to client
 
         String[] data = msg.split("GET ");
@@ -68,5 +68,6 @@ public class FileController {
             }
         }
 
+        return gotReturned;
     }
 }

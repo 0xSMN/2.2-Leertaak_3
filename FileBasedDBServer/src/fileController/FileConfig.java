@@ -8,7 +8,6 @@ public class FileConfig {
 
     // All keys receiving from the lightweight server
     public static String[] DB_COLUMNS = {"STN", "DATETIME", "TEMP", "DEWP", "STP", "SLP", "VISIB", "WDSP", "PRCP", "SNDP", "FRSHTT", "CLDC", "WNDDIR"};
-    public static String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     private static DateFormat yearFormat = new SimpleDateFormat("yyyy");
     private static DateFormat monthFormat = new SimpleDateFormat("MM");

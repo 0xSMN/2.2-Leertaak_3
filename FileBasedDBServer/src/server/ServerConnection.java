@@ -54,7 +54,10 @@ public class ServerConnection extends Thread {
                 String textIn = din.readUTF();
                 System.out.println(textIn);
                 // Send incoming message to the FileController
-                FileController.incomingMessage(textIn);
+                String records = FileController.incomingMessage(textIn, ID);
+                if (records != null) {
+                    sendStringToClient(records);
+                }
                 //sendStringToAllClients(textIn);
             }
             din.close();
