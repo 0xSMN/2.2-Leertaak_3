@@ -19,7 +19,7 @@
 .red-text {
     color: #ff2520;
     font-weight: bold;
-    font-family: Arial;
+    font-family: "Lato", sans-serif;
 }
 
 .toggle-bar {
@@ -37,6 +37,7 @@
     cursor: pointer;
     transition: background 0.3s;
 }
+
 .toggle-login span{
     color: #fff;
     text-transform: uppercase;

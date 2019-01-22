@@ -21,11 +21,11 @@ a {
 }
 
 .logout-button {
-    background: #2e3192;
+    background-color: #2e3192;
     padding: 10px;
-    font-size: 16px;
+    font-size: 14px;
     color: #fff;
-    font-family: Arial;
+    font-family: "Lato", sans-serif;
     border: none;
     position: absolute;
     bottom: 50px;
@@ -33,6 +33,13 @@ a {
     right: 0;
     margin: auto;
     width: 150px;
+    transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+    transition: background-color 0.2s;
+    background-color: #cacbe3;
+    cursor: pointer;
 }
 
 .logout-button a {
@@ -45,14 +52,40 @@ a {
 
 .sidebar-menu>li>a {
     display: block;
-    color: #72777a;
     font-size: 15px;
-    font-weight: 500;
-    font-family: Arial;
+    font-family: "Lato", sans-serif;
     padding: 15px 15px;
     position: relative;
     white-space: nowrap;
     border-bottom: 1px solid #7955482b;
+    cursor: pointer;
+    background: linear-gradient(90deg, #fff 50%, #00a651 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+.sidebar-menu>li>a:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(90deg, #00a651 50%, transparent 50%);
+    z-index: -1;
+}
+
+.sidebar-menu>li>a,
+.sidebar-menu>li>a:after {
+    background-size: 300%;
+    background-position: 100%;
+    transition: 1s, font-size 0.2s;
+}
+
+.sidebar-menu>li>a:hover,
+.sidebar-menu>li>a:hover:after {
+    background-position: 0;
 }
 
 .sidebar {
@@ -75,15 +108,21 @@ a {
 
 .title {
     font-size: 30px;
-    font-family: "Arial";
+    font-family: Arial;
+    color: white;
     position: relative;
     left: 350px;
+    width: 870px;
+    padding: 15px 15px;
+    background-color: rgba(46,49,146,0.84);
+    border-style: solid;
+    border-color: #2e3192;
 }
 
 .choices {
     font-family: Arial;
     position: relative;
-    top: 40px;
+    top: 15px;
     left: 350px;
 }
 
@@ -109,6 +148,6 @@ a {
 .canvas{
     background: #ffffff;
     position: absolute;
-    top: 160px;
+    top: 170px;
     left: 560px;
 }
