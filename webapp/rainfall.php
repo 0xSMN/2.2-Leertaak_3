@@ -17,7 +17,6 @@ if ($loggedin) {
 }
 
 include('footer.php');
-
 ?>
 
 <html>
@@ -50,8 +49,6 @@ include('footer.php');
         <option value="sialkot">Sialkot</option>
         <option value="sukkur">Sukkur</option>
     </select>
-    <p>Date:</p>
-    <input type="date" name="date">
     <p></p>
     <button>Submit</button>
 </div>

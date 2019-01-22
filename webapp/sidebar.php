@@ -10,7 +10,7 @@
 <div class="sidebar">
 	<div class="sidebar-inner">
 		<div class="sidebar-logo">
-			<img src="imgs/final-logo-example.png"/>
+            <a href="index.php"><img src="imgs/final-logo-example.png"/></a>
 		</div>
 		<nav class="sidenav">
 			<ul class="sidebar-menu">
@@ -18,7 +18,7 @@
 				<li><a href="history.php">Weather History</a></li>
 				<li><a href="settings.php">Settings</a></li>
 			</ul>
-			<button class="logout-button"><a href="?logout=1">Logout</a></button>
+			<button class="logout-button"><a href="http://localhost/webapp/?logout=1">Logout</a></button>
 		</nav>
 	</div>
 </div>

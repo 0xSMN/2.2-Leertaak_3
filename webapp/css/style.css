@@ -93,6 +93,13 @@ a {
     left: 350px;
 }
 
+.text {
+    font-family: Arial;
+    position: relative;
+    top: 40px;
+    left: 350px;
+}
+
 .canvas{
     background: #ffffff;
     position: absolute;

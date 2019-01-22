@@ -25,3 +25,5 @@ include('footer.php');
     <p class="title">Settings</p>
 </head>
 <body>
+
+</body>

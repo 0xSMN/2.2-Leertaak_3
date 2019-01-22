@@ -51,7 +51,13 @@ include('footer.php');
         <option value="sukkur">Sukkur</option>
     </select>
     <p>Date:</p>
-    <input type="date" name="date">
+
+    <?php
+    $fourweeksago = date('Y-m-j',strtotime('-4 week'));
+    $today = date('Y-m-j');
+    ?>
+
+    <input type="date" name="date" min="<?php echo $fourweeksago; ?>" max="<?php echo $today; ?>">
     <p></p>
     <button>Submit</button>
 </div>
