@@ -45,6 +45,7 @@ a {
 
 .sidebar-menu>li>a {
     display: block;
+    color: #72777a;
     font-size: 15px;
     font-weight: 500;
     font-family: Arial;
@@ -52,13 +53,6 @@ a {
     position: relative;
     white-space: nowrap;
     border-bottom: 1px solid #7955482b;
-}
-
-.sidebar-menu li a {
-    color: #72777a;
-    -webkit-transition: all .3s ease;
-    -o-transition: all .3s ease;
-    transition: all .3s ease;
 }
 
 .sidebar {
@@ -91,6 +85,18 @@ a {
     position: relative;
     top: 40px;
     left: 350px;
+}
+
+.choices>form>select {
+    width: 180px;
+    padding: 10px 15px;
+    margin-top: 10px;
+}
+
+.choices>form>input {
+    width: 180px;
+    padding: 10px 15px;
+    margin-top: 10px;
 }
 
 .text {

@@ -6,6 +6,8 @@
  * Time: 20:46
  */
 ?>
+<html>
+<body>
 &copy Weather Application
 </body>
 </html>

@@ -22,44 +22,49 @@ include('footer.php');
 
 <html>
 <head>
-    <p class="title">Weather History</p>
 </head>
 <body>
 
+<p class="title">Weather History</p>
+
 <div class="choices">
+    <form method="get" action="">
     <p>Location:</p>
-    <select>
-        <option value="abbottabad" selected>Abbottabad</option>
-        <option value="ahmadpureast">Ahmadpur East</option>
-        <option value="bahawalpur">Bahawalpur</option>
-        <option value="faisalabad">Faisalabad</option>
-        <option value="gujranwala">Gujranwala</option>
-        <option value="gujrat">Gujrat</option>
-        <option value="hyderabad">Hyderabad</option>
-        <option value="islamabad">Islamabad</option>
-        <option value="jhang">Jhang</option>
-        <option value="karachi">Karachi</option>
-        <option value="lahore">Lahore</option>
-        <option value="larkana">Larkana</option>
-        <option value="multan">Multan</option>
-        <option value="peshawar">Peshawar</option>
-        <option value="quetta">Quetta</option>
-        <option value="rawalpindi">Rawalpindi</option>
-        <option value="sargodha">Sargodha</option>
-        <option value="sheikhupura">Sheikhupura</option>
-        <option value="sialkot">Sialkot</option>
-        <option value="sukkur">Sukkur</option>
-    </select>
+        <select name="location">
+            <option value="Abbottabad">Abbottabad</option>
+            <option value="Ahmadpur East">Ahmadpur East</option>
+            <option value="Bahawalpur">Bahawalpur</option>
+            <option value="Faisalabad">Faisalabad</option>
+            <option value="Gujranwala">Gujranwala</option>
+            <option value="Gujrat">Gujrat</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Islamabad">Islamabad</option>
+            <option value="Jhang">Jhang</option>
+            <option value="Karachi">Karachi</option>
+            <option value="Lahore">Lahore</option>
+            <option value="Larkana">Larkana</option>
+            <option value="Multan">Multan</option>
+            <option value="Peshawar">Peshawar</option>
+            <option value="Quetta">Quetta</option>
+            <option value="Rawalpindi">Rawalpindi</option>
+            <option value="Sargodha">Sargodha</option>
+            <option value="Sheikhupura">Sheikhupura</option>
+            <option value="Sialkot">Sialkot</option>
+            <option value="Sukkur">Sukkur</option>
+        </select><br><br>
     <p>Date:</p>
-
-    <?php
-    $fourweeksago = date('Y-m-j',strtotime('-4 week'));
-    $today = date('Y-m-j');
-    ?>
-
-    <input type="date" name="date" min="<?php echo $fourweeksago; ?>" max="<?php echo $today; ?>">
-    <p></p>
-    <button>Submit</button>
+        <?php
+        $fourweeksago = date('Y-m-j',strtotime('-4 week'));
+        $today = date('Y-m-j');
+        ?>
+        <input type="date" name="date" value="<?php echo $today; ?>" min="<?php echo $fourweeksago; ?>" max="<?php echo $today; ?>">
+        <br><br>
+        <input type="submit" value="Submit" onclick="<?php $location = $_GET["location"];
+        $date = $_GET["date"]?>">
+    </form>
+    <br>
+    <p><?php echo $location ?> </p>
+    <p><?php echo $date ?> </p>
 </div>
 
 <canvas class="canvas" id="raingraph" width="700" height="400"></canvas>
