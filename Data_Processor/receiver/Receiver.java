@@ -1,10 +1,12 @@
 package receiver;
 
 import XML.Measurement;
+import XML.Correction;
 
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
+
 
 
 public class Receiver {
@@ -12,6 +14,7 @@ public class Receiver {
     private static final int maxnrofConnections=4;
     private static int connections = 0; // int to keep track of the number of connections
     private static ArrayList<Measurement> data = new ArrayList<Measurement>();
+
 
     public static void work() {
         Socket connection;

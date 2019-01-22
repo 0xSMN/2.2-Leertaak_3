@@ -94,6 +94,7 @@ public class XML_Parser {
                             break;
                         case "SNDP": //Gevallen sneeuw in centimeters, geldige waardes van -9999.9 t/m 9999.9 met 1 decimaal
                             measurements.get(measurements.size() - 1).SNDP = Float.parseFloat(line);
+
                             break;
 //                        Gebeurtenissen op deze dag, cummulatief, binair uitgedrukt.
 //                        Opeenvolgend, van meest- naar minst significant:
@@ -116,8 +117,9 @@ public class XML_Parser {
                 }
             }
         }
-        catch (IOException ioe) { }
 
+        catch (IOException ioe) { }
+        Correction.makeList(measurements);
         return measurements;
     }
 }
