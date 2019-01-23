@@ -1,6 +1,6 @@
 package Storage;
 
-import XML.Correction;
+import Correction.Corrector;
 import receiver.Receiver;
 import XML.Measurement;
 

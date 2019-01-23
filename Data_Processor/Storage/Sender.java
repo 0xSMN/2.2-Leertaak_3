@@ -1,6 +1,5 @@
 package Storage;
 
-import XML.Correction;
 import receiver.Receiver;
 import XML.Measurement;
 
@@ -9,7 +8,6 @@ import java.io.IOException;
 import java.net.Socket;
 import java.rmi.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 
 
@@ -21,7 +19,9 @@ public class Sender implements Runnable{
     public void run() {
         while (true) {
             dataList.addAll(Receiver.getData());
-            //TODO for now, the list is emptied, in the final product, the data will be stored in the database
+
+
+
             if (!dataList.isEmpty()) {
                 try {
                     Iterator<Measurement> i = dataList.iterator();

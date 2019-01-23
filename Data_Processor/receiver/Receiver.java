@@ -1,7 +1,6 @@
 package receiver;
 
 import XML.Measurement;
-import XML.Correction;
 
 import java.net.ServerSocket;
 import java.net.Socket;
