@@ -34,9 +34,9 @@ public class ReadFile {
                 while (sc.hasNextLine())
                 {
                     String line = sc.nextLine();
-                    if (!line.contains(FileConfig.DB_COLUMNS[1]))
+                    if (!line.contains(FileConfig.DB_COLUMNS[2]))
                     {
-                        if (filter[0].equals(FileConfig.DB_COLUMNS[1]))
+                        if (filter[0].equals(FileConfig.DB_COLUMNS[2]))
                         {
                             if (min_date != -1 && max_date != -1)
                             {
