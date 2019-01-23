@@ -32,13 +32,6 @@ public class ServerConnection extends Thread {
         }
     }
 
-    public void sendStringToAllClients(String text) {
-        for (int index = 0; index < server.connections.size(); index++) {
-            ServerConnection sc = server.connections.get(index);
-            sc.sendStringToClient(text);
-        }
-    }
-
     @Override
     public void run() {
         try {
@@ -57,7 +50,7 @@ public class ServerConnection extends Thread {
                 // Send incoming message to the FileController
                 List<String> records = FileController.incomingMessage(textIn);
 
-                if (records != null && records.size() > 1) {
+                if (records != null && records.size() >= 1) {
                     System.out.println("Records to send: " + records.size());
                     int maxToSend = 750;
                     int counter = 0;
@@ -75,8 +68,16 @@ public class ServerConnection extends Thread {
                         sendStringToClient(tosend);
                         counter += 1;
                     }
+                } else if (records != null && records.size() < 1) {
+                    sendStringToClient("[]");
                 }
+                /*
+                if (socket.getKeepAlive()) {
+                    shouldrun = false;
+                }
+                */
             }
+            System.out.println("Connection closed : " + socket.getInetAddress());
             din.close();
             dout.close();
             socket.close();

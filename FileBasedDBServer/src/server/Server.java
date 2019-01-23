@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Server {
 
     ServerSocket ss;
-    ArrayList<ServerConnection> connections = new ArrayList<ServerConnection>();
+    //ArrayList<ServerConnection> connections = new ArrayList<ServerConnection>();
     boolean shouldrun = true;
 
     public Server() {
@@ -20,8 +20,8 @@ public class Server {
                 Socket s = ss.accept();
                 ServerConnection sc = new ServerConnection(s, this);
                 sc.start();
-                System.out.println("New connection");
-                connections.add(sc);
+                System.out.println("New connection : " + sc.socket.getInetAddress());
+                //connections.add(sc);
             }
         } catch (IOException e) {
             e.printStackTrace();

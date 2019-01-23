@@ -20,6 +20,8 @@ public class FileController {
 
         if (msg.contains("INSERT")) {
             WriteDataToFile(msg);
+            System.out.println("msg : " + msg);
+
         }
         if (msg.contains("GET")) {
             return ReadDataFromFile(msg);
@@ -35,10 +37,9 @@ public class FileController {
             if (data[i].length() > 0) {
                 String[] list = data[i].split(",");
                 dict.add(new HashMap<String,String>());
-                Map<String,String> currentDictionary = dict.get(dict.size()-1);
 
                 for (int j = 0; j < list.length; j++) {
-                    currentDictionary.put(FileConfig.DB_COLUMNS[j], list[j]);
+                    dict.get(dict.size()-1).put(FileConfig.DB_COLUMNS[j], list[j]);
                 }
             }
         }
