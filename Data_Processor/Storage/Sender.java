@@ -42,7 +42,9 @@ public class Sender implements Runnable{
                 catch (UnknownHostException uhe) {
                     System.err.println("Cannot connect to database: unknown host");
                 }
-                catch (IOException ioe) { }
+                catch (IOException ioe) {
+                    System.err.println(ioe.getMessage());
+                }
             }
 
             dataList.clear();

@@ -45,9 +45,18 @@ public class Corrector {
             for (float f : deeznuts) {
                 averageValue += f;
             }
+            averageValue = averageValue / deeznuts.size();
             float difference = Math.abs(value - averageValue);
             float perDifference = 0; // the difference in percents
             perDifference = ((difference / Math.abs(averageValue)) * 100);
+
+
+            System.out.println("Average: " + averageValue);
+            System.out.println("Value:" + value);
+            System.out.println("Abs Difference: " + difference);
+            System.out.println("Per Difference: " + perDifference);
+
+
             if (perDifference < 20) {
                 deeznuts.remove(0);
                 deeznuts.add(value);
