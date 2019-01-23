@@ -72,29 +72,68 @@ public class XML_Parser {
                             measurements.get(measurements.size() - 1).DATETIME.setTime(measurements.get(measurements.size() - 1).DATETIME.getTime() + time);
                             break;
                         case "TEMP": //Temperatuur in graden Celsius, geldige waardes van -9999.9 t/m 9999.9 met 1 decimaal
-                            measurements.get(measurements.size() - 1).TEMP = Float.parseFloat(line);
+                            if(line.trim().equals("") && Correction.avgTEMP != 0.0f){
+                                measurements.get(measurements.size() - 1).TEMP = Correction.avgTEMP;
+                            }
+                            else {
+                                measurements.get(measurements.size() - 1).TEMP = Float.parseFloat(line);
+                            }
                             break;
                         case "DEWP": // Dauwpunt in graden Celsius, geldige waardes van -9999.9 t/m 9999.9 met 1 decimaal
-                            measurements.get(measurements.size() - 1).DEWP = Float.parseFloat(line);
+                            if(line.trim().equals("") && Correction.avgDEWP != 0.0f){
+                                measurements.get(measurements.size() - 1).DEWP = Correction.avgDEWP;
+                            }
+                            else {
+                                measurements.get(measurements.size() - 1).DEWP = Float.parseFloat(line);
+                            }
                             break;
                         case "STP": //Luchtdruk op stationsniveau in millibar, geldige waardes van 0.0 t/m 9999.9 met 1 decimaal
-                            measurements.get(measurements.size() - 1).STP = Float.parseFloat(line);
+                            if(line.trim().equals("") && Correction.avgSTP != 0.0f){
+                                measurements.get(measurements.size() - 1).STP = Correction.avgSTP;
+                            }
+                            else {
+                                measurements.get(measurements.size() - 1).STP = Float.parseFloat(line);
+                            }
                             break;
                         case "SLP": //Luchtdruk op zeeniveau in millibar, geldige waardes van 0.0 t/m 9999.9 met 1 decimaal
+                            if(line.trim().equals("") && Correction.avgSLP != 0.0f){
+                                measurements.get(measurements.size() - 1).SLP = Correction.avgSLP;
+                            }
+                            else {
                             measurements.get(measurements.size() - 1).SLP = Float.parseFloat(line);
+                            }
                             break;
                         case "VISIB": //Zichtbaarheid in kilometers, geldige waardes van 0.0 t/m 999.9 met 1 decimaal
-                            measurements.get(measurements.size() - 1).VISIB = Float.parseFloat(line);
+                            if(line.trim().equals("") && Correction.avgVISIB != 0.0f){
+                                measurements.get(measurements.size() - 1).VISIB = Correction.avgVISIB;
+                            }
+                            else {
+                                measurements.get(measurements.size() - 1).VISIB = Float.parseFloat(line);
+                            }
                             break;
                         case "WDSP": //Windsnelheid in kilometers per uur, geldige waardes van 0.0 t/m 999.9 met 1 decimaal
-                            measurements.get(measurements.size() - 1).WDSP = Float.parseFloat(line);
+                            if(line.trim().equals("") && Correction.avgTEMP != 0.0f){
+                                measurements.get(measurements.size() - 1).TEMP = Correction.avgTEMP;
+                            }
+                            else {
+                                measurements.get(measurements.size() - 1).WDSP = Float.parseFloat(line);
+                            }
                             break;
                         case "PRCP": //Neerslag in centimeters, geldige waardes van 0.00 t/m 999.99 met 2 decimalen
-                            measurements.get(measurements.size() - 1).PRCP = Float.parseFloat(line);
+                            if(line.trim().equals("") && Correction.avgPRCP != 0.0f){
+                                measurements.get(measurements.size() - 1).PRCP = Correction.avgPRCP;
+                            }
+                            else {
+                                measurements.get(measurements.size() - 1).PRCP = Float.parseFloat(line);
+                            }
                             break;
                         case "SNDP": //Gevallen sneeuw in centimeters, geldige waardes van -9999.9 t/m 9999.9 met 1 decimaal
-                            measurements.get(measurements.size() - 1).SNDP = Float.parseFloat(line);
-
+                            if(line.trim().equals("") && Correction.avgSNDP != 0.0f){
+                                measurements.get(measurements.size() - 1).SNDP = Correction.avgSNDP;
+                            }
+                            else {
+                                measurements.get(measurements.size() - 1).SNDP = Float.parseFloat(line);
+                            }
                             break;
 //                        Gebeurtenissen op deze dag, cummulatief, binair uitgedrukt.
 //                        Opeenvolgend, van meest- naar minst significant:
@@ -119,7 +158,8 @@ public class XML_Parser {
         }
 
         catch (IOException ioe) { }
-        Correction.makeList(measurements);
+        measurements = Correction.makeList(measurements);
+
         return measurements;
     }
 }
