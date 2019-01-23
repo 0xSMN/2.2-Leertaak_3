@@ -6,6 +6,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.List;
 
 public class ServerConnection extends Thread {
 
@@ -52,13 +53,29 @@ public class ServerConnection extends Thread {
                     }
                 }
                 String textIn = din.readUTF();
-                System.out.println(textIn);
+                // System.out.println(textIn);
                 // Send incoming message to the FileController
-                String records = FileController.incomingMessage(textIn);
-                if (records != null) {
-                    sendStringToClient(records);
+                List<String> records = FileController.incomingMessage(textIn);
+
+                if (records != null && records.size() > 1) {
+                    System.out.println("Records to send: " + records.size());
+                    int maxToSend = 750;
+                    int counter = 0;
+
+                    for (int i = 0; i < records.size(); i += maxToSend) {
+                        String tosend = "";
+                        for (int j = 0; j < maxToSend; j++) {
+                            int element = (counter*maxToSend)+j;
+                            if (element < records.size()) {
+                                tosend += records.get(element);
+                            }
+                        }
+                        byte[] b = tosend.getBytes();
+                        System.out.println("Bytes to send: " + b.length);
+                        sendStringToClient(tosend);
+                        counter += 1;
+                    }
                 }
-                //sendStringToAllClients(textIn);
             }
             din.close();
             dout.close();

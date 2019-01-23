@@ -13,7 +13,6 @@ public class ClientConnection extends Thread {
 
     public ClientConnection(Socket socket, Client client) {
         s = socket;
-
     }
 
     public void sendStringToServer(String text) {
@@ -24,11 +23,9 @@ public class ClientConnection extends Thread {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
     }
 
     public void run() {
-
         try {
             din = new DataInputStream(s.getInputStream());
             dout = new DataOutputStream(s.getOutputStream());
@@ -40,7 +37,6 @@ public class ClientConnection extends Thread {
                             Thread.sleep(1);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
-
                         }
                     }
                     String reply = din.readUTF();
@@ -49,13 +45,10 @@ public class ClientConnection extends Thread {
                     e.printStackTrace();
                     close();
                 }
-
         } catch (IOException e) {
-
             e.printStackTrace();
             close();
         }
-
     }
 
     public void close() {
@@ -64,9 +57,7 @@ public class ClientConnection extends Thread {
             dout.close();
             s.close();
         } catch (IOException e) {
-
             e.printStackTrace();
         }
-
     }
 }
