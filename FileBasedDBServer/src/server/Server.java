@@ -1,9 +1,10 @@
+/* Author: Daniël Geerts
+ */
 package server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 
 public class Server {
 
@@ -11,6 +12,9 @@ public class Server {
     //ArrayList<ServerConnection> connections = new ArrayList<ServerConnection>();
     boolean shouldrun = true;
 
+    /* Receive here all clients trying to connect
+     * For each client a new treads starts
+     */
     public Server() {
         try {
             ss = new ServerSocket(3333);

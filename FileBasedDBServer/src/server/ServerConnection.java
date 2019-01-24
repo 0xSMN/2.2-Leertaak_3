@@ -1,3 +1,5 @@
+/* Author: Daniël Geerts
+ */
 package server;
 
 import fileController.FileController;
@@ -16,12 +18,17 @@ public class ServerConnection extends Thread {
     DataOutputStream dout;
     boolean shouldrun = true;
 
+    /* Init a single client here
+     * This class represents one client that has connected to the server
+     */
     public ServerConnection(Socket socket, Server server) {
         super("ServerConnectionThread");
         this.socket = socket;
         this.server = server;
     }
 
+    /* Send here a string to this client
+     */
     public void sendStringToClient(String text) {
         try {
             dout.writeUTF(text);
@@ -32,6 +39,12 @@ public class ServerConnection extends Thread {
         }
     }
 
+    /* Override of the Run function (starts when Thread is started)
+     * Checks here if there is an incoming message
+     * Then sends that message to the FileController
+     * When done, you receive a list of records (with GET request, with INSERT request list will be empty)
+     * Then send records to this client, if no records send '[]'
+     */
     @Override
     public void run() {
         try {
@@ -46,7 +59,7 @@ public class ServerConnection extends Thread {
                     }
                 }
                 String textIn = din.readUTF();
-                // System.out.println(textIn);
+
                 // Send incoming message to the FileController
                 List<String> records = FileController.incomingMessage(textIn);
 
@@ -71,11 +84,6 @@ public class ServerConnection extends Thread {
                 } else if (records != null && records.size() < 1) {
                     sendStringToClient("[]");
                 }
-                /*
-                if (socket.getKeepAlive()) {
-                    shouldrun = false;
-                }
-                */
             }
             System.out.println("Connection closed : " + socket.getInetAddress());
             din.close();

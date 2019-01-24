@@ -1,3 +1,5 @@
+/* Author: Daniël Geerts
+ */
 package fileController;
 
 import java.io.*;
@@ -6,8 +8,14 @@ import java.util.Map;
 
 public class CreateFile {
 
+    /* Check if file already exists else return
+     * If not exists create a new one with the right name
+     * Initialize it with the right columns (see FileConfig for the columns)
+     *
+     * @Author Daniël Geerts
+     */
     public CreateFile() {
-        String filepath = FileConfig.DYNAMIC_FILE_PATCH;
+        String filepath = FileConfig.DYNAMIC_FILE_PATH;
         String filename = FileConfig.DYNAMIC_FILE_NAME;
         BufferedWriter bw = null;
         FileWriter fw = null;
@@ -16,7 +24,7 @@ public class CreateFile {
             new File(filepath).mkdirs();
             File file = new File(filepath + "\\" + filename);
 
-            // if file doesnt exists, then create it
+            // if file does not exists, then create one
             if (!file.exists()) {
                 file.createNewFile();
             } else {
@@ -54,8 +62,14 @@ public class CreateFile {
         }
     }
 
+    /* This function will add data to a file (so this does not overwrite it!)
+     *
+     * @parameter data Is a List of a Map that has as keys the DB columns and as value the values received from client
+     *
+     * @Author Daniël Geerts
+     */
     public void addDataToFile(List<Map<String,String>> data) {
-        String filepath = FileConfig.DYNAMIC_FILE_PATCH;
+        String filepath = FileConfig.DYNAMIC_FILE_PATH;
         String filename = FileConfig.DYNAMIC_FILE_NAME;
         BufferedWriter bw = null;
         FileWriter fw = null;

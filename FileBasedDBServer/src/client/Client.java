@@ -1,12 +1,11 @@
+/* Author: Daniël Geerts
+ */
 package client;
-
-import fileController.FileController;
 
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Date;
-import java.util.Random;
 import java.util.Scanner;
 import java.net.*;
 

@@ -1,8 +1,8 @@
+/* Author: Daniël Geerts
+ */
 package fileController;
 
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.io.*;
-import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -11,6 +11,13 @@ public class ReadFile {
     public ReadFile() {
     }
 
+    /* Do some checks and read the right files from the Database
+     * Then return the right records
+     *
+     * @Parameter: instructions Represents the instruction that the client has send with GET
+     *
+     * @Author Daniël Geerts
+     */
     public List<String> ReadRecordsFromFile(String instructions) throws IOException {
         FileInputStream inputStream = null;
         Scanner sc = null;
@@ -31,20 +38,14 @@ public class ReadFile {
                 inputStream = new FileInputStream(list.get(i));
                 sc = new Scanner(inputStream, "UTF-8");
 
-                while (sc.hasNextLine())
-                {
+                while (sc.hasNextLine()) {
                     String line = sc.nextLine();
-                    if (!line.contains(FileConfig.DB_COLUMNS[2]))
-                    {
-                        if (filter[0].equals(FileConfig.DB_COLUMNS[2]))
-                        {
-                            if (min_date != -1 && max_date != -1)
-                            {
+                    if (!line.contains(FileConfig.DB_COLUMNS[2])) {
+                        if (filter[0].equals(FileConfig.DB_COLUMNS[2])) {
+                            if (min_date != -1 && max_date != -1) {
                                 Long db_date = convertDateToLong(line.split(",")[1].trim()); // [1] == DATETIME
-                                if (db_date != -1)
-                                {
-                                    if (min_date.compareTo(db_date) * db_date.compareTo(max_date) > 0)
-                                    {
+                                if (db_date != -1) {
+                                    if (min_date.compareTo(db_date) * db_date.compareTo(max_date) > 0) {
                                         tosend.add(line);
                                     }
                                 }
@@ -76,6 +77,15 @@ public class ReadFile {
         return tosend;
     }
 
+    /* Read from a default folder every folder and file
+     * Then add the right files compared with the dates to the (parameter) files
+     *
+     * @parameter directoryName The default directory to look in
+     * @parameter files This List will contain the files that have been found from the right date
+     * @parameter dates All dates that the client requested
+     *
+     * @Author Daniël Geerts
+     */
     private void ReadDirectoryAddFiles(String directoryName, List<File> files, List<String> dates) {
         File directory = new File(directoryName);
 
@@ -98,6 +108,12 @@ public class ReadFile {
         }
     }
 
+    /* Convert Date to long with try catch block
+     *
+     * @parameter data Is the date as String to convert to a long
+     *
+     * @Author Daniël Geerts
+     */
     private Long convertDateToLong(String data) {
         try {
             return Long.parseLong(data);
@@ -108,6 +124,13 @@ public class ReadFile {
         return -1L;
     }
 
+    /* Get every date and hour between 2 dates
+     *
+     * @parameter min Minimal Date to check from
+     * @parameter max Maximal Date to check till
+     *
+     * @Author Daniël Geerts
+     */
     private List<String> getAllDatesBetween(Date min, Date max){
         List<String> dates = new ArrayList<>();
 

@@ -1,3 +1,5 @@
+/* Author: Daniël Geerts
+ */
 package client;
 
 import java.io.DataInputStream;

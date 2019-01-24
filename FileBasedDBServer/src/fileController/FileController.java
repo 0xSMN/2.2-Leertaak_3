@@ -1,3 +1,5 @@
+/* Author: Daniël Geerts
+ */
 package fileController;
 
 import java.io.IOException;
@@ -6,9 +8,15 @@ import java.util.*;
 public class FileController {
 
     private FileController() {
-        // TODO: check welke files bestaan en save de name in een Array
     }
 
+    /* Incoming message from client
+     * Send this message to the right function
+     *
+     * @parameter msg Instructions received from client
+     *
+     * @Author Daniël Geerts
+     */
     public static List<String> incomingMessage(String msg) {
         // TODO: check message for the command (write to file/ read from file)
         if (msg.contains("INSERT") && msg.contains("GET")) {
@@ -20,15 +28,22 @@ public class FileController {
 
         if (msg.contains("INSERT")) {
             WriteDataToFile(msg);
-            System.out.println("msg : " + msg);
-
+            return null;
         }
+
         if (msg.contains("GET")) {
             return ReadDataFromFile(msg);
         }
         return null;
     }
 
+    /* Handle here the INSERT instruction
+     * Sow right the INSERT to a file
+     *
+     * @parameter msg Instructions received from client
+     *
+     * @Author Daniël Geerts
+     */
     private static void WriteDataToFile(String msg) {
         String[] data = msg.split("INSERT ");
         List<Map<String,String>> dict = new ArrayList<Map<String,String>>();
@@ -49,8 +64,12 @@ public class FileController {
         dict.clear();
     }
 
-    /*
-        Because the files are going to very large, we will scan trough the files
+    /* Handle here the GET instruction
+     * Sow scan from the files the records we need
+     *
+     * @parameter msg Instructions received from client
+     *
+     * @Author Daniël Geerts
      */
     private static List<String> ReadDataFromFile(String msg) {
         String[] data = msg.split("GET ");
