@@ -17,6 +17,7 @@ if ($loggedin) {
 }
 
 include('footer.php');
+
 ?>
 
 <html>
@@ -52,11 +53,15 @@ include('footer.php');
             <option value="Sukkur">Sukkur</option>
         </select>
         <br><br>
-        <input type="submit" value="Submit" onclick="<?php $location = $_GET["location"];?>">
+        <input type="submit" value="Submit" oninput="<?php $location = $_GET["location"];?>">
     </form>
 </div>
 
     <?php
+
+    if($location==NULL){
+        $location="Abbotabbad";
+    }
 
     $dataPoints = array(
         array("x" => 946665000000, "y" => 3),
