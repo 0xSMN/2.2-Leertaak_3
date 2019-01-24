@@ -8,6 +8,8 @@ import java.util.Map;
 
 public class CreateFile {
 
+    FileConfig fc = new FileConfig();
+
     /* Check if file already exists else return
      * If not exists create a new one with the right name
      * Initialize it with the right columns (see FileConfig for the columns)
@@ -15,8 +17,8 @@ public class CreateFile {
      * @Author Daniël Geerts
      */
     public CreateFile() {
-        String filepath = FileConfig.DYNAMIC_FILE_PATH;
-        String filename = FileConfig.DYNAMIC_FILE_NAME;
+        String filepath = fc.DYNAMIC_FILE_PATH;
+        String filename = fc.DYNAMIC_FILE_NAME;
         BufferedWriter bw = null;
         FileWriter fw = null;
 
@@ -69,8 +71,8 @@ public class CreateFile {
      * @Author Daniël Geerts
      */
     public void addDataToFile(List<Map<String,String>> data) {
-        String filepath = FileConfig.DYNAMIC_FILE_PATH;
-        String filename = FileConfig.DYNAMIC_FILE_NAME;
+        String filepath = fc.DYNAMIC_FILE_PATH;
+        String filename = fc.DYNAMIC_FILE_NAME;
         BufferedWriter bw = null;
         FileWriter fw = null;
 
