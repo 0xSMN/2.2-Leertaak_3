@@ -3,6 +3,7 @@
 package fileController;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class FileController {
@@ -45,16 +46,16 @@ public class FileController {
      * @Author Daniël Geerts
      */
     private static void WriteDataToFile(String msg) {
-        String[] data = msg.split("INSERT ");
+        List<String> data = Arrays.asList(msg.split("INSERT "));
         List<Map<String,String>> dict = new ArrayList<Map<String,String>>();
 
-        for (int i = 0; i < data.length; i++) {
-            if (data[i].length() > 0) {
-                String[] list = data[i].split(",");
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).length() > 0) {
+                List<String> list = Arrays.asList(data.get(i).split(","));
                 dict.add(new HashMap<String,String>());
 
-                for (int j = 0; j < list.length; j++) {
-                    dict.get(dict.size()-1).put(FileConfig.DB_COLUMNS[j], list[j]);
+                for (int j = 0; j < list.size(); j++) {
+                    dict.get(dict.size()-1).put(FileConfig.DB_COLUMNS[j], list.get(j));
                 }
             }
         }
@@ -72,16 +73,16 @@ public class FileController {
      * @Author Daniël Geerts
      */
     private static List<String> ReadDataFromFile(String msg) {
-        String[] data = msg.split("GET ");
+        List<String> data = Arrays.asList(msg.split("GET "));
         List<String> gotReturned = new ArrayList<>();
 
-        for (int i = 0; i < data.length; i++ ) {
-            if (data[i].length() > 5) {
-                System.out.println("GET request: " + data[i]);
+        for (int i = 0; i < data.size(); i++ ) {
+            if (data.get(i).length() > 5) {
+                System.out.println("GET request: " + data.get(i));
 
                 try {
                     ReadFile reader = new ReadFile();
-                    gotReturned.addAll(reader.ReadRecordsFromFile(data[i]));
+                    gotReturned.addAll(reader.ReadRecordsFromFile(data.get(i)));
                 } catch (IOException e) {
                     e.getMessage();
                 }

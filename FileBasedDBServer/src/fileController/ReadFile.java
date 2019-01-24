@@ -23,9 +23,9 @@ public class ReadFile {
         Scanner sc = null;
         List<String> tosend = new ArrayList<>();
 
-        String[] filter = instructions.split(",");
-        Long min_date = convertDateToLong(filter[1].trim());
-        Long max_date = convertDateToLong(filter[2].trim());
+        List<String> filter = Arrays.asList(instructions.split(","));
+        Long min_date = convertDateToLong(filter.get(1).trim());
+        Long max_date = convertDateToLong(filter.get(2).trim());
 
         try {
             List<File> list = new ArrayList<File>();
@@ -41,12 +41,12 @@ public class ReadFile {
                 while (sc.hasNextLine()) {
                     String line = sc.nextLine();
                     if (!line.contains(FileConfig.DB_COLUMNS[2])) {
-                        if (filter[0].equals(FileConfig.DB_COLUMNS[2])) {
+                        if (filter.get(0).equals(FileConfig.DB_COLUMNS[2])) {
                             if (min_date != -1 && max_date != -1) {
                                 Long db_date = convertDateToLong(line.split(",")[1].trim()); // [1] == DATETIME
                                 if (db_date != -1) {
                                     if (min_date.compareTo(db_date) * db_date.compareTo(max_date) > 0) {
-                                        tosend.add(line);
+                                        tosend.add("(" + line + ")");
                                     }
                                 }
                             }
@@ -90,7 +90,7 @@ public class ReadFile {
         File directory = new File(directoryName);
 
         // Get all files from a directory.
-        File[] fList = directory.listFiles();
+        List<File> fList = Arrays.asList(directory.listFiles());
 
         if (fList != null) {
             for (File file : fList) {

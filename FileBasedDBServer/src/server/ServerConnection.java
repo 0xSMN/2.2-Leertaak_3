@@ -59,7 +59,7 @@ public class ServerConnection extends Thread {
                     }
                 }
                 String textIn = din.readUTF();
-
+                System.out.println(textIn);
                 // Send incoming message to the FileController
                 List<String> records = FileController.incomingMessage(textIn);
 
@@ -76,9 +76,8 @@ public class ServerConnection extends Thread {
                                 tosend += records.get(element);
                             }
                         }
-                        byte[] b = tosend.getBytes();
-                        System.out.println("Bytes to send: " + b.length);
-                        sendStringToClient(tosend);
+                        sendStringToClient("[" + tosend + "]");
+                        System.out.println("Records send: " + maxToSend);
                         counter += 1;
                     }
                 } else if (records != null && records.size() < 1) {
