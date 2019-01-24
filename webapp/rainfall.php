@@ -57,68 +57,90 @@ include('footer.php');
     </form>
 </div>
 
-    <?php
+<?php
 
-    if($location==NULL){
-        $location="Abbotabbad";
-    }
+if($location==NULL){
+    $location="Abbotabbad";
+}
 
-    $dataPoints = array(
-        array("x" => 946665000000, "y" => 3),
-        array("x" => 978287400000, "y" => 3),
-        array("x" => 1009823400000, "y" => 2),
-        array("x" => 1041359400000, "y" => 2),
-        array("x" => 1072895400000, "y" => 2),
-        array("x" => 1104517800000, "y" => 1),
-        array("x" => 1136053800000, "y" => 1),
-        array("x" => 1167589800000, "y" => 2),
-        array("x" => 1199125800000, "y" => 1),
-        array("x" => 1230748200000, "y" => 2),
-        array("x" => 1262284200000, "y" => 6),
-        array("x" => 1293820200000, "y" => 5),
-        array("x" => 1325356200000, "y" => 4),
-        array("x" => 1356978600000, "y" => 3),
-        array("x" => 1388514600000, "y" => 2),
-        array("x" => 1420050600000, "y" => 1),
-        array("x" => 1451586600000, "y" => 2)
-    );
+?>
 
-    ?>
-        <script>
-            window.onload = function () {
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
 
-                var chart = new CanvasJS.Chart("chartContainer", {
-                    animationEnabled: true,
-                    title:{
-                        text: "<?php echo $location; ?>"
-                    },
-                    axisY: {
-                        title: "Rainfall in ml",
-                        suffix: "ml",
-                    },
-                    axisX: {
-                        title: "Minutes"
-                    },
-                    data: [{
-                        type: "spline",
-                        markerSize: 5,
-                        xValueFormatString: "DD-MM-YYYY",
-		                yValueFormatString: "#,#",
-		                xValueType: "dateTime",
-		                dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-                    }]
-                });
+<div class="canvas" id="container"></div>
 
-                chart.render();
+<script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'spline',
+            animation: Highcharts.svg, // don't animate in old IE
+            events: {
+                load: function () {
 
+                    // set up the updating of the chart each second
+                    var series = this.series[0];
+                    setInterval(function () {
+                        var x = (new Date()).getTime(), // current time
+                            y = Math.random();
+                        series.addPoint([x, y], true, true);
+                    }, 1000);
+                }
             }
-        </script>
+        },
 
-    <div class="canvas" id="chartContainer" style="height: 400px; width: 700px;"></div>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        time: {
+            useUTC: false
+        },
 
+        title: {
+            text: "Rainfall in <?php echo $location; ?>"
+        },
+        xAxis: {
+            type: 'datetime',
+            tickPixelInterval: 150
+        },
+        yAxis: {
+            title: {
+                text: 'Rain in ml'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            headerFormat: '<b>{series.name}</b><br/>',
+            pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}<br/>{point.y:.2f}'
+        },
+        legend: {
+            enabled: false
+        },
+        exporting: {
+            enabled: false
+        },
+        series: [{
+            name: 'Rainfall',
+            data: (function () {
+                // generate an array of random data
+                var data = [],
+                    time = (new Date()).getTime(),
+                    i;
 
-</canvas>
+                for (i = -19; i <= 0; i += 1) {
+                    data.push({
+                        x: time + i * 1000,
+                        y: Math.random()
+                    });
+                }
+                return data;
+            }())
+        }]
+    });
+</script>
 
 </body>
 

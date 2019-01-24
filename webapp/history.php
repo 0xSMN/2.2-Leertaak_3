@@ -67,6 +67,7 @@ include('footer.php');
     <p><?php echo $date ?> </p>
 </div>
 
-<canvas class="canvas" id="raingraph" width="700" height="400"></canvas>
+<canvas class="canvas" id="container"></canvas>
+
 
 </body>
