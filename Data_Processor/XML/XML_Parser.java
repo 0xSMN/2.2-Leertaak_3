@@ -1,5 +1,9 @@
 package XML;
 
+import Correction.Correction;
+import Correction.Corrector;
+
+import java.awt.geom.FlatteningPathIterator;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
@@ -72,28 +76,68 @@ public class XML_Parser {
                             measurements.get(measurements.size() - 1).DATETIME.setTime(measurements.get(measurements.size() - 1).DATETIME.getTime() + time);
                             break;
                         case "TEMP": //Temperatuur in graden Celsius, geldige waardes van -9999.9 t/m 9999.9 met 1 decimaal
-                            measurements.get(measurements.size() - 1).TEMP = Float.parseFloat(line);
+                            if(line.trim().equals("")){
+                                measurements.get(measurements.size() - 1).TEMP = Float.MIN_NORMAL;
+                            }
+                            else {
+                                measurements.get(measurements.size() - 1).TEMP = Float.parseFloat(line);
+                            }
                             break;
                         case "DEWP": // Dauwpunt in graden Celsius, geldige waardes van -9999.9 t/m 9999.9 met 1 decimaal
-                            measurements.get(measurements.size() - 1).DEWP = Float.parseFloat(line);
+                            if(line.trim().equals("")){
+                                measurements.get(measurements.size() - 1).DEWP = Float.MIN_NORMAL;
+                            }
+                            else {
+                                measurements.get(measurements.size() - 1).DEWP = Float.parseFloat(line);
+                            }
                             break;
                         case "STP": //Luchtdruk op stationsniveau in millibar, geldige waardes van 0.0 t/m 9999.9 met 1 decimaal
-                            measurements.get(measurements.size() - 1).STP = Float.parseFloat(line);
+                            if(line.trim().equals("")){
+                                measurements.get(measurements.size() - 1).STP = Float.MIN_NORMAL;
+                            }
+                            else {
+                                measurements.get(measurements.size() - 1).STP = Float.parseFloat(line);
+                            }
                             break;
                         case "SLP": //Luchtdruk op zeeniveau in millibar, geldige waardes van 0.0 t/m 9999.9 met 1 decimaal
+                            if(line.trim().equals("")){
+                                measurements.get(measurements.size() - 1).SLP = Float.MIN_NORMAL;
+                            }
+                            else {
                             measurements.get(measurements.size() - 1).SLP = Float.parseFloat(line);
+                            }
                             break;
                         case "VISIB": //Zichtbaarheid in kilometers, geldige waardes van 0.0 t/m 999.9 met 1 decimaal
-                            measurements.get(measurements.size() - 1).VISIB = Float.parseFloat(line);
+                            if(line.trim().equals("")){
+                                measurements.get(measurements.size() - 1).VISIB = Float.MIN_NORMAL;
+                            }
+                            else {
+                                measurements.get(measurements.size() - 1).VISIB = Float.parseFloat(line);
+                            }
                             break;
                         case "WDSP": //Windsnelheid in kilometers per uur, geldige waardes van 0.0 t/m 999.9 met 1 decimaal
-                            measurements.get(measurements.size() - 1).WDSP = Float.parseFloat(line);
+                            if(line.trim().equals("")){
+                                measurements.get(measurements.size() - 1).TEMP = Float.MIN_NORMAL;
+                            }
+                            else {
+                                measurements.get(measurements.size() - 1).WDSP = Float.parseFloat(line);
+                            }
                             break;
                         case "PRCP": //Neerslag in centimeters, geldige waardes van 0.00 t/m 999.99 met 2 decimalen
-                            measurements.get(measurements.size() - 1).PRCP = Float.parseFloat(line);
+                            if(line.trim().equals("")){
+                                measurements.get(measurements.size() - 1).PRCP = Float.MIN_NORMAL;
+                            }
+                            else {
+                                measurements.get(measurements.size() - 1).PRCP = Float.parseFloat(line);
+                            }
                             break;
                         case "SNDP": //Gevallen sneeuw in centimeters, geldige waardes van -9999.9 t/m 9999.9 met 1 decimaal
-                            measurements.get(measurements.size() - 1).SNDP = Float.parseFloat(line);
+                            if(line.trim().equals("")){
+                                measurements.get(measurements.size() - 1).SNDP = Float.MIN_NORMAL;
+                            }
+                            else {
+                                measurements.get(measurements.size() - 1).SNDP = Float.parseFloat(line);
+                            }
                             break;
 //                        Gebeurtenissen op deze dag, cummulatief, binair uitgedrukt.
 //                        Opeenvolgend, van meest- naar minst significant:
@@ -116,7 +160,14 @@ public class XML_Parser {
                 }
             }
         }
+
         catch (IOException ioe) { }
+//        measurements = Corrector.makeList(measurements);
+
+        // Sends all measurments trough the corrector
+        for (Measurement m: measurements) {
+            m = Correction.testAndAddMeasurement(m);
+        }
 
         return measurements;
     }
