@@ -135,6 +135,19 @@ a {
     margin-top: 10px;
 }
 
+.choices>form>input[type=submit] {
+    background-color: #2e3192;
+    color: #fff;
+    border: none;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.choices>form>input[type=submit]:active {
+    transition: background-color 0.2s;
+    background-color: #cacbe3;
+}
+
 .text {
     font-family: Arial;
     position: relative;
