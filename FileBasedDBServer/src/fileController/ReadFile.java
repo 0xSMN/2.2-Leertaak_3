@@ -18,7 +18,7 @@ public class ReadFile {
      *
      * @Author Daniël Geerts
      */
-    public List<String> ReadRecordsFromFile(String instructions) throws IOException {
+    public synchronized List<String> ReadRecordsFromFile(String instructions) throws IOException {
         FileInputStream inputStream = null;
         Scanner sc = null;
         List<String> tosend = new ArrayList<>();
@@ -40,10 +40,10 @@ public class ReadFile {
 
                 while (sc.hasNextLine()) {
                     String line = sc.nextLine();
-                    if (!line.contains(FileConfig.DB_COLUMNS[2])) {
-                        if (filter.get(0).equals(FileConfig.DB_COLUMNS[2])) {
+                    if (!line.contains(FileConfig.DB_COLUMNS[Arrays.asList(FileConfig.DB_COLUMNS).indexOf("DATETIME")])) {
+                        if (filter.get(0).equals(FileConfig.DB_COLUMNS[Arrays.asList(FileConfig.DB_COLUMNS).indexOf("DATETIME")])) {
                             if (min_date != -1 && max_date != -1) {
-                                Long db_date = convertDateToLong(line.split(",")[1].trim()); // [1] == DATETIME
+                                Long db_date = convertDateToLong(line.split(",")[Arrays.asList(FileConfig.DB_COLUMNS).indexOf("DATETIME")].trim());
                                 if (db_date != -1) {
                                     if (min_date.compareTo(db_date) * db_date.compareTo(max_date) > 0) {
                                         tosend.add("(" + line + ")");

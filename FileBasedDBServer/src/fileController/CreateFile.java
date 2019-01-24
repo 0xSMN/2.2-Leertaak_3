@@ -17,6 +17,10 @@ public class CreateFile {
      * @Author Daniël Geerts
      */
     public CreateFile() {
+        InitFile();
+    }
+
+    private synchronized void InitFile() {
         String filepath = fc.DYNAMIC_FILE_PATH;
         String filename = fc.DYNAMIC_FILE_NAME;
         BufferedWriter bw = null;
@@ -70,7 +74,7 @@ public class CreateFile {
      *
      * @Author Daniël Geerts
      */
-    public void addDataToFile(List<Map<String,String>> data) {
+    public synchronized void addDataToFile(List<Map<String,String>> data) {
         String filepath = fc.DYNAMIC_FILE_PATH;
         String filename = fc.DYNAMIC_FILE_NAME;
         BufferedWriter bw = null;

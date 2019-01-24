@@ -77,9 +77,7 @@ public class FileController {
         List<String> gotReturned = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++ ) {
-            if (data.get(i).length() > 5) {
-                System.out.println("GET request: " + data.get(i));
-
+            if (data.get(i).length() > 3) {
                 try {
                     ReadFile reader = new ReadFile();
                     gotReturned.addAll(reader.ReadRecordsFromFile(data.get(i)));
@@ -88,7 +86,6 @@ public class FileController {
                 }
             }
         }
-
         return gotReturned;
     }
 }

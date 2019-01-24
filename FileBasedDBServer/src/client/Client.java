@@ -67,7 +67,7 @@ public class Client {
         cc.close();
     }
 
-    private static void sendDataToServer() {
+    private void sendDataToServer() {
         long startTime = System.currentTimeMillis();
         long elapsedTimeInMS = 0;
         boolean dataIsSend = false;
@@ -107,7 +107,7 @@ public class Client {
     }
 
     private static void getDataToServer() {
-        String getdata = "GET DATETIME, 1548079216528, 1548158786037";
+        String getdata = "GET DATETIME, 1548329193999, 1548329194001";
 
         client.cc.sendStringToServer(getdata);
 

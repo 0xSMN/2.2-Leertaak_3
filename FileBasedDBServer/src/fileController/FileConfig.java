@@ -9,7 +9,7 @@ import java.util.Date;
 public class FileConfig {
 
     // All keys receiving from the lightweight server
-    public static String[] DB_COLUMNS = {"ID", "STN", "DATETIME", "TEMP", "DEWP", "STP", "SLP", "VISIB", "WDSP", "PRCP", "SNDP", "FRSHTT", "CLDC", "WNDDIR"};
+    public static String[] DB_COLUMNS = {"STN", "DATETIME", "TEMP", "DEWP", "STP", "SLP", "VISIB", "WDSP", "PRCP", "SNDP", "FRSHTT", "CLDC", "WNDDIR"};
 
     private DateFormat yearFormat = new SimpleDateFormat("yyyy");
     private DateFormat monthFormat = new SimpleDateFormat("MM");

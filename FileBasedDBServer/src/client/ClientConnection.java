@@ -41,8 +41,12 @@ public class ClientConnection extends Thread {
                             e.printStackTrace();
                         }
                     }
-                    String reply = din.readUTF();
-                    System.out.println(reply);
+                    String received = din.readUTF();
+                    System.out.println("Records received: " + received.split("\\(").length);
+                    String[] jep = received.split("\\(");
+                    for (String a : jep) {
+                        System.out.println(a);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                     close();
