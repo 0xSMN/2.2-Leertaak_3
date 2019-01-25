@@ -1,0 +1,7 @@
+.class
+.idea/*
+out/*
+.externalToolBuilders/*
+*.iml
+*.csv
+_database_/*
