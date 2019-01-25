@@ -4,7 +4,6 @@ package XML;
         import java.util.Date;
 
 public class Measurement {
-    private long ID = 1234;
     public int STN;
     public Date DATETIME;
     public float TEMP;
@@ -21,7 +20,6 @@ public class Measurement {
 
     public String GenSendString() { //
         String s = "INSERT ";
-        s = s.concat(ID + ", ");
         s = s.concat(STN + ", ");
         s = s.concat(DATETIME.getTime() + ", ");
         s = s.concat(TEMP + ", ");
