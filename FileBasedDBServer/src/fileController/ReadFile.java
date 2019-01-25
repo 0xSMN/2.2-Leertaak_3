@@ -24,13 +24,14 @@ public class ReadFile {
         List<String> tosend = new ArrayList<>();
 
         List<String> filter = Arrays.asList(instructions.split(","));
+        int stn_id = Integer.parseInt(filter.get(0).trim());
         Long min_date = convertDateToLong(filter.get(1).trim());
         Long max_date = convertDateToLong(filter.get(2).trim());
 
         try {
             List<File> list = new ArrayList<File>();
             List<String> dates = getAllDatesBetween(new Date(min_date), new Date(max_date));
-            ReadDirectoryAddFiles(FileConfig.FOLDER_NAME, list, dates);
+            ReadDirectoryAddFiles(FileConfig.FOLDER_NAME, list, dates, stn_id);
             System.out.println("Aantal files added: " + list.size());
             /*for (File f : list) {
                 System.out.println("File added: " + f);
@@ -41,14 +42,12 @@ public class ReadFile {
 
                 while (sc.hasNextLine()) {
                     String line = sc.nextLine();
-                    if (!line.contains(FileConfig.DB_COLUMNS[Arrays.asList(FileConfig.DB_COLUMNS).indexOf("DATETIME")])) {
-                        if (filter.get(0).equals(FileConfig.DB_COLUMNS[Arrays.asList(FileConfig.DB_COLUMNS).indexOf("DATETIME")])) {
-                            if (min_date != -1 && max_date != -1) {
-                                Long db_date = convertDateToLong(line.split(",")[Arrays.asList(FileConfig.DB_COLUMNS).indexOf("DATETIME")].trim());
-                                if (db_date != -1) {
-                                    if (min_date.compareTo(db_date) * db_date.compareTo(max_date) > 0) {
-                                        tosend.add("(" + line + ")");
-                                    }
+                    if (!line.contains("STN") && !line.contains("DATETIME")) {
+                        if (min_date != -1 && max_date != -1) {
+                            Long db_date = convertDateToLong(line.split(",")[Arrays.asList(FileConfig.DB_COLUMNS).indexOf("DATETIME")].trim());
+                            if (db_date != -1) {
+                                if (min_date.compareTo(db_date) * db_date.compareTo(max_date) > 0) {
+                                    tosend.add("(" + line + ")");
                                 }
                             }
                         }
@@ -87,7 +86,7 @@ public class ReadFile {
      *
      * @Author Daniël Geerts
      */
-    private void ReadDirectoryAddFiles(String directoryName, List<File> files, List<String> dates) {
+    private void ReadDirectoryAddFiles(String directoryName, List<File> files, List<String> dates, int stn_id) {
         File directory = new File(directoryName);
         if (!directory.exists()) {
             directory.mkdirs();
@@ -100,13 +99,15 @@ public class ReadFile {
             for (File file : fList) {
                 if (file.isFile()) {
                     if (dates.contains(file.getName().replace(".csv", ""))) {
-                        System.out.println(file);
-                        if (!files.contains(file)) {
-                            files.add(file);
+                        if (file.getAbsoluteFile().toString().contains(Integer.toString(stn_id))) {
+                            //System.out.println("Files added: " + file.getAbsoluteFile());
+                            if (!files.contains(file)) {
+                                files.add(file);
+                            }
                         }
                     }
                 } else if (file.isDirectory()) {
-                    ReadDirectoryAddFiles(file.getAbsolutePath(), files, dates);
+                    ReadDirectoryAddFiles(file.getAbsolutePath(), files, dates, stn_id);
                 }
             }
         }

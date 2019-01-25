@@ -8,12 +8,13 @@ import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.Scanner;
 import java.net.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Client {
 
     ClientConnection cc;
 
-    private static int linesOfCode = 200;
+    private static int linesOfCode = 20;
     private static int inputXTimes = 2;
 
     private static int DoThisXTimes = 30;
@@ -23,8 +24,8 @@ public class Client {
     public static void main(String[] args) {
         client = new Client();
 
-        sendDataToServer();
-        //getDataToServer();
+        //sendDataToServer();
+        getDataToServer();
 
     }
 
@@ -78,9 +79,9 @@ public class Client {
             if (elapsedTimeInMS < 1000 && dataIsSend == false) {
                 Date now = new Date();
                 long milliseconds = now.getTime();
-                var min = 1;
-                var max = 10;
-                var random = Math.floor(Math.random() * (max - min + 1)) + min;
+                int min = 1;
+                int max = 10;
+                int random = ThreadLocalRandom.current().nextInt(min, max + 1);
                 String temp = "INSERT " + random + "," + milliseconds + ",24.4,10.2,36.9,44.1,5.5,8.6,70.6,88.8,99.9,0.4,35.3";
                 String fakedata = temp;
 
@@ -107,7 +108,7 @@ public class Client {
     }
 
     private static void getDataToServer() {
-        String getdata = "GET DATETIME, 1548329211000, 1548329211001";
+        String getdata = "GET 6,1548420840342,1548420843345";
 
         client.cc.sendStringToServer(getdata);
 

@@ -16,12 +16,12 @@ public class CreateFile {
      *
      * @Author Daniël Geerts
      */
-    public CreateFile() {
-        InitFile();
+    public CreateFile(int stn_ID) {
+        InitFile(stn_ID);
     }
 
-    private synchronized void InitFile() {
-        String filepath = fc.DYNAMIC_FILE_PATH;
+    private synchronized void InitFile(int stn_ID) {
+        String filepath = fc.DYNAMIC_FILE_PATH + "\\" + stn_ID;
         String filename = fc.DYNAMIC_FILE_NAME;
         BufferedWriter bw = null;
         FileWriter fw = null;
@@ -74,8 +74,8 @@ public class CreateFile {
      *
      * @Author Daniël Geerts
      */
-    public synchronized void addDataToFile(List<Map<String,String>> data) {
-        String filepath = fc.DYNAMIC_FILE_PATH;
+    public synchronized void addDataToFile(Map<String,String> data, int stn_ID) {
+        String filepath = fc.DYNAMIC_FILE_PATH + "\\" + stn_ID;
         String filename = fc.DYNAMIC_FILE_NAME;
         BufferedWriter bw = null;
         FileWriter fw = null;
@@ -97,17 +97,15 @@ public class CreateFile {
             StringBuilder sb = new StringBuilder();
 
             // Loop trough list of data and set with the right key on right position
-            for (int i = 0; i < data.size(); i++) {
-                for (int j = 0; j < FileConfig.DB_COLUMNS.length; j++) {
-                    if (data.get(i).containsKey(FileConfig.DB_COLUMNS[j])) {
-                        sb.append(data.get(i).get(FileConfig.DB_COLUMNS[j]));
-                        if (j < FileConfig.DB_COLUMNS.length - 1) {
-                            sb.append(',');
-                        }
+            for (int j = 0; j < FileConfig.DB_COLUMNS.length; j++) {
+                if (data.containsKey(FileConfig.DB_COLUMNS[j])) {
+                    sb.append(data.get(FileConfig.DB_COLUMNS[j]));
+                    if (j < FileConfig.DB_COLUMNS.length - 1) {
+                        sb.append(',');
                     }
                 }
-                sb.append(System.getProperty("line.separator"));
             }
+            sb.append(System.getProperty("line.separator"));
             bw.write(sb.toString());
         } catch (IOException e) {
             e.printStackTrace();

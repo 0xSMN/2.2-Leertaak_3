@@ -47,21 +47,26 @@ public class FileController {
      */
     private static synchronized void WriteDataToFile(String msg) {
         List<String> data = Arrays.asList(msg.split("INSERT "));
-        List<Map<String,String>> dict = new ArrayList<Map<String,String>>();
+        Map<Integer, Map<String,String>> dict = new HashMap<Integer, Map<String,String>>();
 
         for (int i = 0; i < data.size(); i++) {
-            if (data.get(i).length() > 0) {
+            if (data.get(i).length() > 3) {
                 List<String> list = Arrays.asList(data.get(i).split(","));
-                dict.add(new HashMap<String,String>());
+                int stn_id = Integer.parseInt(list.get(0));
+                if (!dict.containsKey(stn_id)) {
+                    dict.put(stn_id, new HashMap<String, String>());
+                }
 
                 for (int j = 0; j < list.size(); j++) {
-                    dict.get(dict.size()-1).put(FileConfig.DB_COLUMNS[j], list.get(j));
+                    dict.get(stn_id).put(FileConfig.DB_COLUMNS[j], list.get(j));
                 }
             }
         }
 
-        CreateFile file = new CreateFile();
-        file.addDataToFile(dict);
+        for (Integer key : dict.keySet()) {
+            CreateFile file = new CreateFile(key);
+            file.addDataToFile(dict.get(key), key);
+        }
         dict.clear();
     }
 
