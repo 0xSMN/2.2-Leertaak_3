@@ -46,9 +46,12 @@ public class Corrector {
                 averageValue += f;
             }
             averageValue = averageValue / deeznuts.size();
+            averageValue = Math.round(averageValue * 100.0f)/100.0f;
             float difference = Math.abs(value - averageValue);
             float perDifference = 0; // the difference in percents
             perDifference = ((difference / Math.abs(averageValue)) * 100);
+
+            value = Math.round(value * 100.0f) /100.0f;
 
             if (perDifference < 20) {
                 deeznuts.remove(0);

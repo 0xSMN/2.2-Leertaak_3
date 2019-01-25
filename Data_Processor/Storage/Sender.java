@@ -14,7 +14,7 @@ import java.util.Iterator;
 public class Sender implements Runnable{
     private ArrayList<Measurement> dataList = new ArrayList<Measurement>();
     public static final String DatabaseHost = ""; // de hostnaam of ip adress van de database
-    public static final int DatabasePort = 1234; // de port waarop de data wordt ontvangen door de database
+    public static final int DatabasePort = 3333; // de port waarop de data wordt ontvangen door de database
 
     public void run() {
         while (true) {
