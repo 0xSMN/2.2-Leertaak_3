@@ -27,6 +27,8 @@ public class ClientConnection extends Thread {
         }
     }
 
+    static int counter = 0;
+
     public void run() {
         try {
             din = new DataInputStream(s.getInputStream());
@@ -42,11 +44,8 @@ public class ClientConnection extends Thread {
                         }
                     }
                     String received = din.readUTF();
-                    System.out.println("Records received: " + received.split("\\(").length);
-                    String[] jep = received.split("\\(");
-                    for (String a : jep) {
-                        System.out.println(a);
-                    }
+                    counter += received.split("\\(").length - 1;
+                    System.out.println("Records received: " + counter);
                 } catch (IOException e) {
                     e.printStackTrace();
                     close();

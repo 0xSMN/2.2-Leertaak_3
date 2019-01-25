@@ -13,8 +13,8 @@ public class Client {
 
     ClientConnection cc;
 
-    private static int linesOfCode = 500;
-    private static int inputXTimes = 16;
+    private static int linesOfCode = 200;
+    private static int inputXTimes = 2;
 
     private static int DoThisXTimes = 30;
 
@@ -23,8 +23,8 @@ public class Client {
     public static void main(String[] args) {
         client = new Client();
 
-        //sendDataToServer();
-        getDataToServer();
+        sendDataToServer();
+        //getDataToServer();
 
     }
 
@@ -67,7 +67,7 @@ public class Client {
         cc.close();
     }
 
-    private void sendDataToServer() {
+    private static void sendDataToServer() {
         long startTime = System.currentTimeMillis();
         long elapsedTimeInMS = 0;
         boolean dataIsSend = false;
@@ -107,7 +107,7 @@ public class Client {
     }
 
     private static void getDataToServer() {
-        String getdata = "GET DATETIME, 1548329193999, 1548329194001";
+        String getdata = "GET DATETIME, 1548329211000, 1548329211001";
 
         client.cc.sendStringToServer(getdata);
 

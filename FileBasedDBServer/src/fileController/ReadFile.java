@@ -31,9 +31,10 @@ public class ReadFile {
             List<File> list = new ArrayList<File>();
             List<String> dates = getAllDatesBetween(new Date(min_date), new Date(max_date));
             ReadDirectoryAddFiles(FileConfig.FOLDER_NAME, list, dates);
-            for (File f : list) {
+            System.out.println("Aantal files added: " + list.size());
+            /*for (File f : list) {
                 System.out.println("File added: " + f);
-            }
+            }*/
             for (int i = 0; i < list.size(); i++) {
                 inputStream = new FileInputStream(list.get(i));
                 sc = new Scanner(inputStream, "UTF-8");
@@ -88,6 +89,9 @@ public class ReadFile {
      */
     private void ReadDirectoryAddFiles(String directoryName, List<File> files, List<String> dates) {
         File directory = new File(directoryName);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
 
         // Get all files from a directory.
         List<File> fList = Arrays.asList(directory.listFiles());
@@ -139,13 +143,7 @@ public class ReadFile {
         if (diff < 0) {
             diff = -diff;
         }
-/*        System.out.println("hourdiff: " + diff);
 
-        String newstring = new SimpleDateFormat("yyyy-MM-dd HH").format(min);
-        System.out.println(newstring);
-        newstring = new SimpleDateFormat("yyyy-MM-dd HH").format(max);
-        System.out.println(newstring);
-*/
         int year = Integer.parseInt(new SimpleDateFormat("yyyy").format(min));
         int month = Integer.parseInt(new SimpleDateFormat("MM").format(min));
         int day = Integer.parseInt(new SimpleDateFormat("dd").format(min));
@@ -168,9 +166,8 @@ public class ReadFile {
                 newYear += newMonth / 13;
                 newMonth = (newMonth % 13) + 1;
             }
-            //System.out.println(i + ", Date between: " + newYear + "-" + newMonth + "-" + newDay + "_H" + newHour);
 
-            String datebetween = year + "-";
+            String datebetween = newYear + "-";
             if (newMonth < 10) {
                 datebetween += "0";
             }
@@ -183,6 +180,8 @@ public class ReadFile {
                 datebetween += "0";
             }
             datebetween += newHour;
+
+            //System.out.println(i + ", Date between: " + datebetween);
 
             dates.add(datebetween);
         }

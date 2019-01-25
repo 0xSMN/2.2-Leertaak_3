@@ -59,7 +59,7 @@ public class ServerConnection extends Thread {
                     }
                 }
                 String textIn = din.readUTF();
-                System.out.println(textIn);
+                System.out.println("INSERTS received: " + textIn.split("INSERT").length);
                 // Send incoming message to the FileController
                 List<String> records = FileController.incomingMessage(textIn);
 
@@ -67,19 +67,27 @@ public class ServerConnection extends Thread {
                     System.out.println("Records to send: " + records.size());
                     int maxToSend = 750;
                     int counter = 0;
+                    int times = 0;
+                    int totalSend = 0;
 
-                    for (int i = 0; i < records.size(); i += maxToSend) {
-                        String tosend = "";
-                        for (int j = 0; j < maxToSend; j++) {
-                            int element = (counter*maxToSend)+j;
-                            if (element < records.size()) {
-                                tosend += records.get(element);
-                            }
+                    String tosend = "";
+
+                    for (int i = 0; i < records.size(); i ++) {
+                        tosend += records.get(i);
+                        counter ++;
+                        totalSend ++;
+
+                        if (counter >= maxToSend ||
+                            counter >= records.size() ||
+                            counter + (maxToSend * times) >= records.size()) {
+                            sendStringToClient("[" + tosend + "]");
+
+                            tosend = "";
+                            counter = 0;
+                            times ++;
                         }
-                        sendStringToClient("[" + tosend + "]");
-                        System.out.println("Records send: " + maxToSend);
-                        counter += 1;
                     }
+                    System.out.println("Total records send: " + totalSend);
                 } else if (records != null && records.size() < 1) {
                     sendStringToClient("[]");
                 }
