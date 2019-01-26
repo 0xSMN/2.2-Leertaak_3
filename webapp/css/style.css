@@ -1,5 +1,6 @@
 body {
     background: rgba(46, 49, 146, 0.25);
+    overflow-x: hidden;
 }
 
 a {
@@ -62,7 +63,6 @@ a {
     background: linear-gradient(90deg, #fff 50%, #00a651 50%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    position: relative;
 }
 
 .sidebar-menu>li>a:after {
@@ -143,9 +143,20 @@ a {
     cursor: pointer;
 }
 
-.choices>form>input[type=submit]:active {
+.blue-btn:active, .choices>form>input[type=submit]:active {
     transition: background-color 0.2s;
     background-color: #cacbe3;
+}
+
+.blue-btn{
+    position: relative;
+    padding: 10px 15px;
+    left: 350px;
+    background-color: #2e3192;
+    color: #fff;
+    border: none;
+    transition: background-color 0.2s;
+    cursor: pointer;
 }
 
 .text {
@@ -162,8 +173,56 @@ a {
     left: 560px;
     width: 700px;
     height: 400px;
+    -webkit-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
 }
 
 .highcharts-credits{
     visibility: hidden;
+}
+
+.fixed_header {
+    width: 700px;
+    height: 400px;
+    background-color: white;
+    table-layout: fixed;
+    border-collapse: collapse;
+    position: absolute;
+    top: 170px;
+    left: 560px;
+    font-family: "Lato", sans-serif;
+    -webkit-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
+}
+
+.fixed_header tbody{
+    display:block;
+    width: 100%;
+    overflow: auto;
+    height: 100%;
+}
+
+.fixed_header thead tr {
+    display: block;
+}
+
+.head th {
+    font-weight: normal;
+    background: #cacbe3;
+    color: #000000;
+}
+
+.fixed_header thead {
+    background: #2e3192;
+    color: #ffffff;
+    font-family: "Lato", sans-serif;
+    font-size: 16px;
+}
+
+.fixed_header th, .fixed_header td {
+    padding: 5px;
+    text-align: left;
+    width: 200px;
 }

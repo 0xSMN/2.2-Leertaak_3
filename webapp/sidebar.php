@@ -18,7 +18,7 @@
 				<li><a href="history.php">Weather History</a></li>
 				<li><a href="settings.php">Settings</a></li>
 			</ul>
-			<button class="logout-button"><a href="http://localhost/webapp/?logout=1">Logout</a></button>
+			<a href="http://localhost/w/webapp/?logout=1"><button class="logout-button">Logout</button></a>
 		</nav>
 	</div>
 </div>

@@ -30,37 +30,23 @@ include('footer.php');
 <div class="choices">
     <form method="get" action="">
         <p>Location:</p>
-        <select name="location">
-            <option value="Abbottabad">Abbottabad</option>
-            <option value="Ahmadpur East">Ahmadpur East</option>
-            <option value="Bahawalpur">Bahawalpur</option>
-            <option value="Faisalabad">Faisalabad</option>
-            <option value="Gujranwala">Gujranwala</option>
-            <option value="Gujrat">Gujrat</option>
-            <option value="Hyderabad">Hyderabad</option>
-            <option value="Islamabad">Islamabad</option>
-            <option value="Jhang">Jhang</option>
-            <option value="Karachi">Karachi</option>
-            <option value="Lahore">Lahore</option>
-            <option value="Larkana">Larkana</option>
-            <option value="Multan">Multan</option>
-            <option value="Peshawar">Peshawar</option>
-            <option value="Quetta">Quetta</option>
-            <option value="Rawalpindi">Rawalpindi</option>
-            <option value="Sargodha">Sargodha</option>
-            <option value="Sheikhupura">Sheikhupura</option>
-            <option value="Sialkot">Sialkot</option>
-            <option value="Sukkur">Sukkur</option>
+        <select title="location" name="location">
+            <option id="415710" value="Islamabad">Islamabad Airport</option>
+            <option id="417560" value="Jiwani">Jiwani</option>
+            <option id="417800" value="Karachi">Karachi Airport</option>
+            <option id="416410" value="Lahore">Lahore Airport</option>
+            <option id="417490" value="Nawabshah">Nawabshah</option>
+            <option id="415300" value="Peshawar">Peshawar</option>
         </select>
         <br><br>
-        <input type="submit" value="Submit" oninput="<?php $location = $_GET["location"];?>">
+        <input type="submit" value="Submit" oninput="<?php $location = $_GET["location"]; ?>">
     </form>
 </div>
 
 <?php
 
 if($location==NULL){
-    $location="Abbotabbad";
+    $location="Islamabad";
 }
 
 ?>
@@ -109,7 +95,7 @@ if($location==NULL){
             plotLines: [{
                 value: 0,
                 width: 1,
-                color: '#808080'
+                color: '#2e3192'
             }]
         },
         tooltip: {

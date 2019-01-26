@@ -25,8 +25,4 @@ include('footer.php');
 </head>
 <body>
 
-<p class="title">Settings</p>
-
-<button class="text">Change password</button>
-
 </body>
