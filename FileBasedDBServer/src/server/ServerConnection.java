@@ -59,7 +59,7 @@ public class ServerConnection extends Thread {
                     }
                 }
                 String textIn = din.readUTF();
-                System.out.println("INSERTS received: " + textIn.split("INSERT").length);
+                //System.out.println("INSERTS received: " + textIn.split("INSERT").length);
                 // Send incoming message to the FileController
                 List<String> records = FileController.incomingMessage(textIn);
 

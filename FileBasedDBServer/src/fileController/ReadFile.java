@@ -18,7 +18,7 @@ public class ReadFile {
      *
      * @Author Daniël Geerts
      */
-    public synchronized List<String> ReadRecordsFromFile(String instructions) throws IOException {
+    public List<String> ReadRecordsFromFile(String instructions) throws IOException {
         FileInputStream inputStream = null;
         Scanner sc = null;
         List<String> tosend = new ArrayList<>();

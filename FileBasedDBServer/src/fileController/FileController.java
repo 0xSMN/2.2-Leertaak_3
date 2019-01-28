@@ -45,7 +45,7 @@ public class FileController {
      *
      * @Author Daniël Geerts
      */
-    private static synchronized void WriteDataToFile(String msg) {
+    private static void WriteDataToFile(String msg) {
         List<String> data = Arrays.asList(msg.split("INSERT "));
         Map<Integer, Map<String,String>> dict = new HashMap<Integer, Map<String,String>>();
 
@@ -77,7 +77,7 @@ public class FileController {
      *
      * @Author Daniël Geerts
      */
-    private static synchronized List<String> ReadDataFromFile(String msg) {
+    private static List<String> ReadDataFromFile(String msg) {
         List<String> data = Arrays.asList(msg.split("GET "));
         List<String> gotReturned = new ArrayList<>();
 
