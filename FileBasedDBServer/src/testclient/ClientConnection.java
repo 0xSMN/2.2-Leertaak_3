@@ -1,6 +1,6 @@
 /* Author: Daniël Geerts
  */
-package client;
+package testclient;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

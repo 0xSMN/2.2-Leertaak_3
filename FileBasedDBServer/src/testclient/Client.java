@@ -1,6 +1,6 @@
 /* Author: Daniël Geerts
  */
-package client;
+package testclient;
 
 import java.io.IOException;
 import java.net.Socket;
