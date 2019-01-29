@@ -1,0 +1,228 @@
+body {
+    background: rgba(46, 49, 146, 0.25);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.sidebar-logo img {
+    max-width: 100%;
+}
+
+.sidebar-menu {
+    border-right: 1px solid rgba(0,0,0,.0625);
+    list-style: none;
+    margin: 0;
+    overflow: auto;
+    padding: 0;
+    position: relative;
+}
+
+.logout-button {
+    background-color: #2e3192;
+    padding: 10px;
+    font-size: 14px;
+    color: #fff;
+    font-family: "Lato", sans-serif;
+    border: none;
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 150px;
+    transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+    transition: background-color 0.2s;
+    background-color: #cacbe3;
+    cursor: pointer;
+}
+
+.logout-button a {
+    color: #fff;
+}
+
+.sidebar-menu li {
+    position: relative;
+}
+
+.sidebar-menu>li>a {
+    display: block;
+    font-size: 15px;
+    font-family: "Lato", sans-serif;
+    padding: 15px 15px;
+    position: relative;
+    white-space: nowrap;
+    border-bottom: 1px solid #7955482b;
+    cursor: pointer;
+    background: linear-gradient(90deg, #fff 50%, #00a651 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sidebar-menu>li>a:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(90deg, #00a651 50%, transparent 50%);
+    z-index: -1;
+}
+
+.sidebar-menu>li>a,
+.sidebar-menu>li>a:after {
+    background-size: 300%;
+    background-position: 100%;
+    transition: 1s, font-size 0.2s;
+}
+
+.sidebar-menu>li>a:hover,
+.sidebar-menu>li>a:hover:after {
+    background-position: 0;
+}
+
+.sidebar {
+    background-color: #fff;
+    bottom: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 280px;
+    z-index: 1000;
+}
+
+.sidebar-inner {
+    position: relative;
+    height: 100%;
+}
+
+.title {
+    font-size: 30px;
+    font-family: Arial;
+    color: white;
+    position: relative;
+    left: 350px;
+    width: 870px;
+    padding: 15px 15px;
+    background-color: rgba(46,49,146,0.84);
+    border-style: solid;
+    border-color: #2e3192;
+}
+
+.choices {
+    font-family: Arial;
+    position: relative;
+    top: 15px;
+    left: 350px;
+}
+
+.choices>form>select {
+    width: 180px;
+    padding: 10px 15px;
+    margin-top: 10px;
+}
+
+.choices>form>input {
+    width: 180px;
+    padding: 10px 15px;
+    margin-top: 10px;
+}
+
+.choices>form>input[type=submit] {
+    background-color: #2e3192;
+    color: #fff;
+    border: none;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.blue-btn:active, .choices>form>input[type=submit]:active {
+    transition: background-color 0.2s;
+    background-color: #cacbe3;
+}
+
+.blue-btn{
+    position: relative;
+    padding: 10px 15px;
+    left: 350px;
+    background-color: #2e3192;
+    color: #fff;
+    border: none;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.text {
+    font-family: Arial;
+    position: relative;
+    top: 40px;
+    left: 350px;
+}
+
+.canvas{
+    background: #ffffff;
+    position: absolute;
+    top: 170px;
+    left: 560px;
+    width: 700px;
+    height: 400px;
+    -webkit-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
+}
+
+.highcharts-credits{
+    visibility: hidden;
+}
+
+.fixed_header {
+    width: 700px;
+    height: 400px;
+    background-color: white;
+    table-layout: fixed;
+    border-collapse: collapse;
+    position: absolute;
+    top: 170px;
+    left: 560px;
+    font-family: "Lato", sans-serif;
+    -webkit-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
+}
+
+.fixed_header tbody{
+    display:block;
+    width: 100%;
+    overflow: auto;
+    height: 100%;
+}
+
+.fixed_header thead tr {
+    display: block;
+}
+
+.head th {
+    font-weight: normal;
+    background: #cacbe3;
+    color: #000000;
+}
+
+.fixed_header thead {
+    background: #2e3192;
+    color: #ffffff;
+    font-family: "Lato", sans-serif;
+    font-size: 16px;
+}
+
+.fixed_header th, .fixed_header td {
+    padding: 5px;
+    text-align: left;
+    width: 200px;
+}
