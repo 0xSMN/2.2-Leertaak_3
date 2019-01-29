@@ -1,7 +1,9 @@
+/bin/
 .class
 .idea/*
-out/*
+/out/*
 .externalToolBuilders/*
 *.iml
 *.csv
-_database_/*
+/_database_/*
+/.metadata/
