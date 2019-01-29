@@ -87,7 +87,11 @@ include('footer.php');
         <tbody>
         <?php for ($i = 0; $i < 24; $i++) {?>
             <tr id="<?php echo $i ?>">
-                <td><?php echo $i ?>:00</td>
+                <td><?php if ($i < 10){
+                    echo "0$i";
+                    } else {
+                        echo $i;
+                    } ?>:00</td>
             </tr>
         <?php } ?>
         </tbody>
