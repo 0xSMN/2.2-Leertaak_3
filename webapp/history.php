@@ -22,7 +22,7 @@ include('footer.php');
 
 <html>
 <head>
-    <script src="jquery/jquery.min.js"></script>
+    <script src="jquery/jquery-3.3.1.js"></script>
     <script src="js/data_fetcher.js"></script>
 
 </head>
@@ -34,12 +34,12 @@ include('footer.php');
     <form method="get" action="">
     <p>Location:</p>
         <select title="location" name="location">
-            <option value="Islamabad">Islamabad Airport</option>
-            <option value="Jiwani">Jiwani</option>
-            <option value="Karachi">Karachi Airport</option>
-            <option value="Lahore">Lahore Airport</option>
-            <option value="Nawabshah">Nawabshah</option>
-            <option value="Peshawar">Peshawar</option>
+            <option value= "1, Islamabad">Islamabad Airport</option>
+            <option value= "2, Jiwani">Jiwani</option>
+            <option value= "3, Karachi">Karachi Airport</option>
+            <option value= "4, Lahore">Lahore Airport</option>
+            <option value= "5, Nawabshah">Nawabshah</option>
+            <option value= "6, Peshawar">Peshawar</option>
         </select><br><br>
     <p>Date:</p>
         <?php
@@ -58,8 +58,12 @@ include('footer.php');
     if($location==NULL){
         $location="Islamabad";
         $date=$today;
+        $stn = 1;
+    } else {
+        $value = (explode(",",$location));
+        $location = $value[1];
+        $stn = $value[0];
     }
-
     ?>
 
 </div>
@@ -67,7 +71,7 @@ include('footer.php');
         <thead>
             <tr>
                 <th><?php echo $location ?></th>
-                <th></th>
+                <th style="visibility: visible" class="current-location"><?php echo $stn ?></th>
                 <th></th>
                 <th style="text-align: right" class="current-date"><?php echo $date ?></th>
             </tr>
