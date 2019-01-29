@@ -22,6 +22,9 @@ include('footer.php');
 
 <html>
 <head>
+    <script src="jquery/jquery.min.js"></script>
+    <script src="js/data_fetcher.js"></script>
+
 </head>
 <body>
 
@@ -66,7 +69,7 @@ include('footer.php');
                 <th><?php echo $location ?></th>
                 <th></th>
                 <th></th>
-                <th style="text-align: right"><?php echo $date ?></th>
+                <th style="text-align: right" class="current-date"><?php echo $date ?></th>
             </tr>
             <tr class="head">
                 <th>Time</th> <!––in hours-->
@@ -78,198 +81,11 @@ include('footer.php');
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>00:00</td>
-                <td>6</td>
-                <td>5</td>
-                <td>3</td>
-                <td>0</td>
-                <td>12%</td>
+        <?php for ($i = 0; $i < 24; $i++) {?>
+            <tr id="<?php echo $i ?>">
+                <td><?php echo $i ?>:00</td>
             </tr>
-            <tr>
-                <td>01:00</td>
-                <td>6</td>
-                <td>5</td>
-                <td>3</td>
-                <td>0</td>
-                <td>12%</td>
-            </tr>
-            <tr>
-                <td>02:00</td>
-                <td>5</td>
-                <td>5</td>
-                <td>4</td>
-                <td>0</td>
-                <td>12%</td>
-            </tr>
-            <tr>
-                <td>03:00</td>
-                <td>5</td>
-                <td>5</td>
-                <td>4</td>
-                <td>0</td>
-                <td>12%</td>
-            </tr>
-            <tr>
-                <td>04:00</td>
-                <td>4</td>
-                <td>4</td>
-                <td>4</td>
-                <td>0</td>
-                <td>12%</td>
-            </tr>
-            <tr>
-                <td>05:00</td>
-                <td>4</td>
-                <td>4</td>
-                <td>4</td>
-                <td>0</td>
-                <td>12%</td>
-            </tr>
-            <tr>
-                <td>06:00</td>
-                <td>3</td>
-                <td>4</td>
-                <td>4</td>
-                <td>0</td>
-                <td>12%</td>
-            </tr>
-            <tr>
-                <td>07:00</td>
-                <td>2</td>
-                <td>4</td>
-                <td>4</td>
-                <td>0</td>
-                <td>12%</td>
-            </tr>
-            <tr>
-                <td>08:00</td>
-                <td>4</td>
-                <td>4</td>
-                <td>4</td>
-                <td>0</td>
-                <td>12%</td>
-            </tr>
-            <tr>
-                <td>09:00</td>
-                <td>6</td>
-                <td>4</td>
-                <td>4</td>
-                <td>0</td>
-                <td>12%</td>
-            </tr>
-            <tr>
-                <td>10:00</td>
-                <td>9</td>
-                <td>4</td>
-                <td>4</td>
-                <td>0</td>
-                <td>12%</td>
-            </tr>
-            <tr>
-                <td>11:00</td>
-                <td>11</td>
-                <td>4</td>
-                <td>4</td>
-                <td>0</td>
-                <td>12%</td>
-            </tr>
-            <tr>
-                <td>12:00</td>
-                <td>13</td>
-                <td>2</td>
-                <td>7</td>
-                <td>0</td>
-                <td>25%</td>
-            </tr>
-            <tr>
-                <td>13:00</td>
-                <td>14</td>
-                <td>1</td>
-                <td>9</td>
-                <td>0</td>
-                <td>25%</td>
-            </tr>
-            <tr>
-                <td>14:00</td>
-                <td>15</td>
-                <td>1</td>
-                <td>11</td>
-                <td>0</td>
-                <td>25%</td>
-            </tr>
-            <tr>
-                <td>15:00</td>
-                <td>16</td>
-                <td>1</td>
-                <td>15</td>
-                <td>0</td>
-                <td>25%</td>
-            </tr>
-            <tr>
-                <td>16:00</td>
-                <td>15</td>
-                <td>1</td>
-                <td>17</td>
-                <td>0</td>
-                <td>25%</td>
-            </tr>
-            <tr>
-                <td>17:00</td>
-                <td>13</td>
-                <td>3</td>
-                <td>15</td>
-                <td>0</td>
-                <td>25%</td>
-            </tr>
-            <tr>
-                <td>18:00</td>
-                <td>11</td>
-                <td>2</td>
-                <td>11</td>
-                <td>0</td>
-                <td>25%</td>
-            </tr>
-            <tr>
-                <td>19:00</td>
-                <td>10</td>
-                <td>3</td>
-                <td>10</td>
-                <td>0</td>
-                <td>25%</td>
-            </tr>
-            <tr>
-                <td>20:00</td>
-                <td>9</td>
-                <td>4</td>
-                <td>9</td>
-                <td>0</td>
-                <td>25%</td>
-            </tr>
-            <tr>
-                <td>21:00</td>
-                <td>8</td>
-                <td>4</td>
-                <td>8</td>
-                <td>0</td>
-                <td>25%</td>
-            </tr>
-            <tr>
-                <td>22:00</td>
-                <td>7</td>
-                <td>4</td>
-                <td>7</td>
-                <td>0</td>
-                <td>25%</td>
-            </tr>
-            <tr>
-                <td>23:00</td>
-                <td>7</td>
-                <td>4</td>
-                <td>6</td>
-                <td>0</td>
-                <td>25%</td>
-            </tr>
+        <?php } ?>
         </tbody>
     </table>
 

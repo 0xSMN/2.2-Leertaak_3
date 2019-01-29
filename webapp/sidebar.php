@@ -16,7 +16,7 @@
 			<ul class="sidebar-menu">
 				<li><a href="rainfall.php">Rainfall</a></li>
 				<li><a href="history.php">Weather History</a></li>
-				<li><a href="settings.php">Settings</a></li>
+				<li><a href="downloadxml.php">Download XML</a></li>
 			</ul>
 			<a href="http://localhost/w/webapp/?logout=1"><button class="logout-button">Logout</button></a>
 		</nav>
