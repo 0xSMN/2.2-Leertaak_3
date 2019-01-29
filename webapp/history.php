@@ -60,7 +60,7 @@ include('footer.php');
         $date=$today;
         $stn = 1;
     } else {
-        $value = (explode(",",$location));
+        $value = (explode(", ",$location));
         $location = $value[1];
         $stn = $value[0];
     }
@@ -71,8 +71,8 @@ include('footer.php');
         <thead>
             <tr>
                 <th><?php echo $location ?></th>
-                <th style="visibility: visible" class="current-location"><?php echo $stn ?></th>
-                <th></th>
+                <th style="visibility: hidden" class="current-location"><?php echo $stn ?></th>
+                <th></th><th></th><th></th>
                 <th style="text-align: right" class="current-date"><?php echo $date ?></th>
             </tr>
             <tr class="head">
