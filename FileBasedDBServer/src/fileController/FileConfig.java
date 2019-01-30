@@ -21,9 +21,9 @@ public class FileConfig {
     public static String FOLDER_NAME = "_database_";
 
     // Dynamic path to the database
-    public String DYNAMIC_FILE_PATH = FOLDER_NAME + "\\" +
-            yearFormat.format(date) + "\\" +
-            monthFormat.format(date) + "\\" +
+    public String DYNAMIC_FILE_PATH = FOLDER_NAME + "/" +
+            yearFormat.format(date) + "/" +
+            monthFormat.format(date) + "/" +
             dayFormat.format(date);
 
     // Dynamic filename of the records
