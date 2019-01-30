@@ -22,6 +22,12 @@ include('footer.php');
 
 <html>
 <head>
+    <script src="jquery/jquery-3.3.1.js"></script>
+    <script src="js/graph_data_fetcher.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
 </head>
 <body>
 
@@ -31,31 +37,38 @@ include('footer.php');
     <form method="get" action="">
         <p>Location:</p>
         <select title="location" name="location">
-            <option id="415710" value="Islamabad">Islamabad Airport</option>
-            <option id="417560" value="Jiwani">Jiwani</option>
-            <option id="417800" value="Karachi">Karachi Airport</option>
-            <option id="416410" value="Lahore">Lahore Airport</option>
-            <option id="417490" value="Nawabshah">Nawabshah</option>
-            <option id="415300" value="Peshawar">Peshawar</option>
+            <option value="415710, Islamabad">Islamabad Airport</option>
+            <option value="417560, Jiwani">Jiwani</option>
+            <option value="417800, Karachi">Karachi Airport</option>
+            <option value="416410, Lahore">Lahore Airport</option>
+            <option value="417490, Nawabshah">Nawabshah</option>
+            <option value="415300, Peshawar">Peshawar</option>
         </select>
         <br><br>
         <input type="submit" value="Submit" oninput="<?php $location = $_GET["location"]; ?>">
     </form>
+
+    <?php
+
+    $tdate = date('Y-m-j');
+    $hour = date('H:i:s');
+
+    if($location==NULL){
+        $location="415710, Islamabad";
+    }
+
+    $value = (explode(", ",$location));
+    $location = $value[1];
+    $stn = $value[0];
+
+    ?>
+
+    <div style="visibility: hidden">
+        <p class="tdate"> <?php echo $tdate; ?> </p>
+        <p class="thour"> <?php echo $hour; ?> </p>
+        <p class="current-location"> <?php echo $stn ?></p>
+    </div>
 </div>
-
-<?php
-
-if($location==NULL){
-    $location="Islamabad";
-}
-
-?>
-
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-
 <div class="canvas" id="container"></div>
 
 <script>
@@ -66,10 +79,10 @@ if($location==NULL){
             events: {
                 load: function () {
 
-                    // set up the updating of the chart each second
-                    var series = this.series[0];
+                    // set up the updating of the chart every minute
+                    let series = this.series[0];
                     setInterval(function () {
-                        var x = (new Date()).getTime(), // current time
+                        let x = (new Date()).getTime(), // current time
                             y = Math.random();
                         series.addPoint([x, y], true, true);
                     }, 1000);
@@ -90,7 +103,7 @@ if($location==NULL){
         },
         yAxis: {
             title: {
-                text: 'Rain in ml'
+                text: 'Precipitation in cm'
             },
             plotLines: [{
                 value: 0,
@@ -112,7 +125,7 @@ if($location==NULL){
             name: 'Rainfall',
             data: (function () {
                 // generate an array of random data
-                var data = [],
+                let data = [],
                     time = (new Date()).getTime(),
                     i;
 
