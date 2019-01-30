@@ -24,6 +24,7 @@ $(document).ready(function() {
     const current_date_split = current_date.split('-');
     const current_location = $('.current-location').text();
 
+    //Todo: change path when connected to database
     for (let i = 0; i < 10; i++) {
         readTextFile("http://localhost/2.2-Leertaak_3/webapp/_database_/" + current_date_split[0] + "/" + current_date_split[1] + "/" + current_date_split[2] + "/" + current_location + "/" + current_date + "_h0" + i +".csv", i);
     }

@@ -16,7 +16,7 @@ $(document).ready(function() {
     function datetime_to_long(date, time) {
         let input = date + " " + time;
         input = input.map(function (date){
-            return Date.parse(date+"0100")/1000;
+            return Date.parse(date+"0100")/1000; //GMP+1 Timezone
         }
         return input;
     }
@@ -34,5 +34,6 @@ $(document).ready(function() {
     const this_min = datetime_to_long(t_date, time);
     const next_min = next_minute(this_min);
 
+    //Todo: change path when connected to database
     readTextFile("http://localhost/2.2-Leertaak_3/webapp/_database_/" + t_date_split[0] + "/" + t_date_split[1] + "/" + t_date_split[2] + "/" + current_location + "/" + t_date + "_h" + time_split[0] +".csv", this_min, next_min);
 });

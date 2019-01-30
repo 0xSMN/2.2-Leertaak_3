@@ -24,7 +24,6 @@ include('footer.php');
 <head>
     <script src="jquery/jquery-3.3.1.js"></script>
     <script src="js/data_fetcher.js"></script>
-
 </head>
 <body>
 
@@ -34,6 +33,7 @@ include('footer.php');
     <form method="get" action="">
     <p>Location:</p>
         <select title="location" name="location">
+            <!--Todo: change stn-->
             <option value= "1, Islamabad">Islamabad Airport</option>
             <option value= "2, Jiwani">Jiwani</option>
             <option value= "3, Karachi">Karachi Airport</option>
@@ -56,14 +56,15 @@ include('footer.php');
     <?php
 
     if($location==NULL){
-        $location="Islamabad";
+        //Todo: change stn
+        $location="1, Islamabad";
         $date=$today;
-        $stn = 1;
-    } else {
-        $value = (explode(", ",$location));
-        $location = $value[1];
-        $stn = $value[0];
     }
+
+    $value = (explode(", ",$location));
+    $location = $value[1];
+    $stn = $value[0];
+
     ?>
 
 </div>
