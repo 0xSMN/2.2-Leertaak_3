@@ -23,7 +23,7 @@ public class Corrector {
 
 
 
-    public Measurement testAndAddMeasurement(Measurement m) {
+    public synchronized Measurement testAndAddMeasurement(Measurement m) {
         // TODO: actually test the measurement
 
         m.TEMP = testAndAddValue(m.TEMP, listTEMP);

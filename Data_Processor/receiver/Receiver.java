@@ -10,7 +10,7 @@ import java.util.*;
 
 public class Receiver {
     private static final int PORT = 7789;
-    private static final int maxnrofConnections=4;
+    private static final int maxnrofConnections=25;
     private static int connections = 0; // int to keep track of the number of connections
     private static ArrayList<Measurement> data = new ArrayList<Measurement>();
 
