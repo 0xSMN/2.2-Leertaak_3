@@ -31,7 +31,7 @@ include('footer.php');
     <form method="get" action="">
         <p>Location:</p>
         <select title="location" name="location">
-            <option value="415710, Islamabad">Islamabad Airport</option>
+            <option value="1, Islamabad">Islamabad Airport</option>
             <option value="417560, Jiwani">Jiwani</option>
             <option value="417800, Karachi">Karachi Airport</option>
             <option value="416410, Lahore">Lahore Airport</option>

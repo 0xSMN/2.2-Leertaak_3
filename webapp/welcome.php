@@ -16,7 +16,8 @@
 
 <p class="text">This is the weather application for UIC Crop Insurance Pakistan.</p>
 <p class="text">On the page "Rainfall" you can view a live data visualisation of the rainfall in all the locations with weather stations in Pakistan.</p>
-<p class="text">You can also look up weather data up to four weeks back on the page "Weather History".</p>
+<p class="text">You can look up weather data up to four weeks back on the page "Weather History".</p>
+<p class="text">On the page "Download XML" you can download the weather data in XML format.</p>
 
 </body>
 </html>

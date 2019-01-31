@@ -15,7 +15,7 @@ $(document).ready(function() {
             $('#' + row).append('<td>' + array_data_needed[3] + ' °C</td>');
             $('#' + row).append('<td>' + array_data_needed[7] + ' km/h</td>');
             $('#' + row).append('<td>' + array_data_needed[8] + ' cm</td>');
-            $('#' + row).append('<td> &nbsp; &nbsp; ' + array_data_needed[9] + ' cm</td>');
+            $('#' + row).append('<td>&nbsp;&nbsp;' + array_data_needed[9] + ' cm</td>');
             $('#' + row).append('<td>' + array_data_needed[12] + '%</td>');
         };
         rawFile.send(null);
