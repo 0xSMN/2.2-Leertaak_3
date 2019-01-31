@@ -37,6 +37,7 @@ include('footer.php');
     <form method="get" action="">
         <p>Location:</p>
         <select title="location" name="location">
+            <!--todo: add real station numbers-->
             <option value="1, Islamabad">Islamabad Airport</option>
             <option value="2, Jiwani">Jiwani</option>
             <option value="3, Karachi">Karachi Airport</option>
@@ -49,11 +50,13 @@ include('footer.php');
     </form>
 
     <?php
-
-    //$tdate = date('Y-m-j');
+    //todo: remove test date
     $tdate = '2019-01-29';
-    $hour = date('H');
+    $hour = '01';
+    //$tdate = date('Y-m-j');
+    //$hour = date('H');
 
+    //todo: change station nr
     if($location==NULL){
         $location="1, Islamabad";
     }

@@ -22,14 +22,14 @@ $(document).ready(function() {
 
     const t_date = $('.tdate').text();
     const t_date_split = t_date.split('-');
-    const time = $('.time').text();
+    const t_hour = $('.thour').text();
     const current_location = $('.current-location').text();
     const city = $('.city').text();
 
 
     //Todo: change path when connected to database
     function startReading() {
-        let fileName = "http://localhost/2.2-Leertaak_3/webapp/_database_/" + t_date_split[0] + "/" + t_date_split[1] + "/" + t_date_split[2] + "/" + current_location + "/" + t_date + "_h01" +".csv";
+        let fileName = "http://localhost/2.2-Leertaak_3/webapp/_database_/" + t_date_split[0] + "/" + t_date_split[1] + "/" + t_date_split[2] + "/" + current_location + "/" + t_date + "_h" + t_hour + ".csv";
         let realFile = fileName.replace(/ /g, '');
 
         readTextFile(realFile);
@@ -45,7 +45,7 @@ $(document).ready(function() {
             animation: Highcharts.svg,
             events: {
                 load: function () {
-                    e
+
                     let series = this.series[0];
                     setInterval(function () {
                         let x = (new Date()).getTime(); // current time
@@ -96,7 +96,8 @@ $(document).ready(function() {
 
                 for (i = -10; i <= 0; i += 1) { //max 10 values in table at the same time
                     data.push({
-                        x: time + i * 30000
+                        x: time + i * 30000,
+                        y: updatingValue
                     });
                 }
                 return data;
