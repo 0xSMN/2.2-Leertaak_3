@@ -33,7 +33,7 @@ $(document).ready(function() {
         let realFile = fileName.replace(/ /g, '');
 
         readTextFile(realFile);
-        setTimeout(startReading, 1000);
+        setTimeout(startReading, 30000); //read every 30 seconds
     }
     startReading();
 
@@ -42,16 +42,15 @@ $(document).ready(function() {
     Highcharts.chart('container', {
         chart: {
             type: 'spline',
-            animation: Highcharts.svg, // don't animate in old IE
+            animation: Highcharts.svg,
             events: {
                 load: function () {
-
-                    // set up the updating of the chart every minute
+                    e
                     let series = this.series[0];
                     setInterval(function () {
                         let x = (new Date()).getTime(); // current time
                         series.addPoint([x, updatingValue], true, true);
-                    }, 1000);
+                    }, 30000); //update every 30 seconds
                 }
             }
         },
@@ -90,15 +89,14 @@ $(document).ready(function() {
         series: [{
             name: 'Rainfall',
             data: (function () {
-                // generate an array of random data
+                // generate an array of data
                 let data = [],
                     time = (new Date()).getTime(),
                     i;
 
-                for (i = -19; i <= 0; i += 1) {
+                for (i = -10; i <= 0; i += 1) { //max 10 values in table at the same time
                     data.push({
-                        x: time + i * 1000,
-                        y: updatingValue
+                        x: time + i * 30000
                     });
                 }
                 return data;
