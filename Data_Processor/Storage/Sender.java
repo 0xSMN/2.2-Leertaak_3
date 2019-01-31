@@ -13,45 +13,35 @@ import java.util.Iterator;
 
 public class Sender implements Runnable{
     private ArrayList<Measurement> dataList = new ArrayList<Measurement>();
-    public static final String DatabaseHost = "145.37.157.109"; // de hostnaam of ip adress van de database
-    public static final int DatabasePort = 3333; // de port waarop de data wordt ontvangen door de database
+    private static final String DatabaseHost = "145.37.157.109"; // de hostnaam of ip adress van de database
+    private static final int DatabasePort = 3333; // de port waarop de data wordt ontvangen door de database
 
     public void run() {
-        while (true) {
-            dataList.addAll(Receiver.getData());
+
+        try {
 
 
+            Socket connection = new Socket(DatabaseHost, DatabasePort);
+            DataOutputStream DataOut = new DataOutputStream(connection.getOutputStream());
 
-            if (!dataList.isEmpty()) {
-                try {
-                    Iterator<Measurement> i = dataList.iterator();
-
-                    Socket connection = new Socket(DatabaseHost, DatabasePort);
-                    DataOutputStream DataOut = new DataOutputStream(connection.getOutputStream());
-
+            while (true) {
+                dataList.addAll(Receiver.getData());
+                Iterator<Measurement> i = dataList.iterator();
+                if (!dataList.isEmpty()) {
                     while (i.hasNext()) {
                         Measurement m = i.next();
                         String output = m.GenSendString();
                         System.out.println(output);
                         DataOut.writeUTF(output);
-
                     }
-
-                    connection.close();
-                }
-                catch (UnknownHostException uhe) {
-                    System.err.println("Cannot connect to database: unknown host");
-                }
-                catch (IOException ioe) {
-                    System.err.println(ioe.getMessage());
                 }
             }
 
-            dataList.clear();
-            try {
-                Thread.sleep(500);
-            }
-            catch (InterruptedException ie) { }
+//            connection.close();
+        } catch (UnknownHostException uhe) {
+            System.err.println("Cannot connect to database: unknown host");
+        } catch (IOException ioe) {
+            System.err.println(ioe.getMessage());
         }
     }
 }
