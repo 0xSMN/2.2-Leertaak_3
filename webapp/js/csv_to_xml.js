@@ -7,7 +7,7 @@ $(document).ready(function() {
 
     $(".download-btn").click(function() {
         //todo: download xml file
-        //window.location.href = xmlfile
+        //window.location.href = xmlfile;
     });
 
 
