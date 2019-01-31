@@ -31,7 +31,7 @@ include('footer.php');
     <form method="get" action="">
         <p>Location:</p>
         <select title="location" name="location">
-            <option value="415710, Islamabad">Islamabad Airport</option>
+            <option value="1, Islamabad">Islamabad Airport</option>
             <option value="417560, Jiwani">Jiwani</option>
             <option value="417800, Karachi">Karachi Airport</option>
             <option value="416410, Lahore">Lahore Airport</option>
@@ -52,10 +52,9 @@ include('footer.php');
             <?php } ?>
         </select>
         <br><br><br>
-        <input type="submit" value="Download" onclick="<?php $location = $_GET["location"];
+        <input type="submit" value="Submit" onclick="<?php $location = $_GET["location"];
         $date = $_GET["date"];
-        $time = $_GET["hour"];
-        ?>">
+        $time = $_GET["hour"]; ?> ">
     </form>
     <br>
 
@@ -64,10 +63,11 @@ include('footer.php');
         $value = (explode(", ",$location));
         $location = $value[1];
         $stn = $value[0]; ?>
+        <a class="download-btn">Download</a>
         <div style="visibility: hidden">
             <p class="date"> <?php echo $date; ?> </p>
             <p class="time"> <?php echo $time; ?> </p>
-            <p class="location"> <?php echo $stn ?></p>
+            <p class="location"> <?php echo $stn; ?></p>
         </div>
     <?php } ?>
 </div>

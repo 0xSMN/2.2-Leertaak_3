@@ -143,16 +143,19 @@ a {
     cursor: pointer;
 }
 
-.blue-btn:active, .choices>form>input[type=submit]:active {
+.download-btn:active, .choices>form>input[type=submit]:active {
     transition: background-color 0.2s;
     background-color: #cacbe3;
 }
 
-.blue-btn{
-    position: relative;
+.download-btn{
+    position: fixed;
     padding: 10px 15px;
-    left: 350px;
-    background-color: #2e3192;
+    top: 340px;
+    left: 800px;
+    font-family: "Lato", sans-serif;
+    font-size: 14;
+    background-color: #00a651;
     color: #fff;
     border: none;
     transition: background-color 0.2s;
