@@ -48,7 +48,10 @@ public class Sender implements Runnable{
             }
 
             dataList.clear();
-//            Thread.sleep(5000);
+            try {
+                Thread.sleep(500);
+            }
+            catch (InterruptedException ie) { }
         }
     }
 }

@@ -33,7 +33,9 @@ public class Receiver {
 
                     executioner.execute(new IncomingConn(connection));
                     connections++;
-                    System.err.println("New connection established, there are " + connections + " connections");
+                    if (connections % 50 == 0) {
+                        System.err.println("New connection established, there are " + connections + " connections");
+                    }
                 }
                 else {
                     //System.out.println("Maximum number of threads exceeded");
@@ -54,7 +56,7 @@ public class Receiver {
 //        System.out.println("Data added, there are now " + data.size() + " measurements");
     }
 
-    //geeft alle data terug en leegt de arraylistf
+    //geeft alle data terug en leegt de arraylist
     public synchronized static ArrayList<Measurement> getData() {
         ArrayList<Measurement> data2 = new ArrayList<>(data);
         data.clear();

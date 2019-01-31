@@ -34,20 +34,19 @@ public class IncomingConn implements Runnable
                     //data legen
                     data= "";
                 }
-                if (bin.ready()) {
-                    if ((s = bin.readLine()) != null) {
-                        data = data.concat(s);
-                        data = data.concat("\n");
-                    } else {
-                        break;
-                    }
+                if ((s = bin.readLine()) != null) {
+                    data = data.concat(s);
+                    data = data.concat("\n");
+                } else {
+                    break;
                 }
+
                 Thread.yield();
             }
 
             // now close the socket connection
             connection.close();
-            System.err.println("Connection closed");
+//            System.err.println("Connection closed");
 
             //System.out.println(data);
 
