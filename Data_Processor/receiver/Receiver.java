@@ -5,14 +5,16 @@ import XML.Measurement;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
-
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class Receiver {
     private static final int PORT = 7789;
-    private static final int maxnrofConnections=25;
+    private static final int maxnrofConnections=800;
     private static int connections = 0; // int to keep track of the number of connections
     private static ArrayList<Measurement> data = new ArrayList<Measurement>();
+    private static ExecutorService executioner  = Executors.newFixedThreadPool(maxnrofConnections/2);
 
 
     public static void work() {
@@ -26,8 +28,10 @@ public class Receiver {
                 if (connections < maxnrofConnections) {
                     connection = server.accept();
 
-                    Thread conn = new Thread(new IncomingConn(connection));
-                    conn.start();
+//                    Thread conn = new Thread(new IncomingConn(connection));
+//                    conn.start();
+
+                    executioner.execute(new IncomingConn(connection));
                     connections++;
                     System.err.println("New connection established, there are " + connections + " connections");
                 }
@@ -50,7 +54,7 @@ public class Receiver {
 //        System.out.println("Data added, there are now " + data.size() + " measurements");
     }
 
-    //geeft alle data terug en leegt de arraylist
+    //geeft alle data terug en leegt de arraylistf
     public synchronized static ArrayList<Measurement> getData() {
         ArrayList<Measurement> data2 = new ArrayList<>(data);
         data.clear();
