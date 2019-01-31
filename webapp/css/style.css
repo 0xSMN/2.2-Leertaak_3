@@ -109,7 +109,7 @@ a {
     color: white;
     position: relative;
     left: 350px;
-    width: 870px;
+    width: 970px;
     padding: 15px 15px;
     background-color: rgba(46,49,146,0.84);
     border-style: solid;
@@ -171,7 +171,7 @@ a {
     position: absolute;
     top: 170px;
     left: 560px;
-    width: 700px;
+    width: 800px;
     height: 400px;
     -webkit-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 2px 5px 1px rgba(0,0,0,0.75);
@@ -183,7 +183,7 @@ a {
 }
 
 .fixed_header {
-    width: 700px;
+    width: 800px;
     height: 400px;
     background-color: white;
     table-layout: auto;
@@ -229,5 +229,5 @@ a {
 }
 
 td {
-    text-align: center;
+    text-align: left;
 }

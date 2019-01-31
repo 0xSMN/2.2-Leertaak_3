@@ -73,7 +73,7 @@ include('footer.php');
             <tr>
                 <th><?php echo $location ?></th>
                 <th style="visibility: hidden" class="current-location"><?php echo $stn ?></th>
-                <th></th><th></th><th></th>
+                <th></th><th></th><th></th><th></th>
                 <th style="text-align: right" class="current-date"><?php echo $date ?></th>
             </tr>
             <tr class="head">
@@ -82,6 +82,7 @@ include('footer.php');
                 <th>Dew Point</th> <!––DEWP-->
                 <th>Wind Speed</th> <!––WDSP-->
                 <th>Precipitation</th> <!––PRCP (rainfall)-->
+                <th>Snowfall &nbsp; &nbsp;</th> <!--SNDP-->
                 <th>Cloud Cover</th> <!––CLDC-->
             </tr>
         </thead>

@@ -11,10 +11,11 @@ $(document).ready(function() {
             const data_needed = allText.substring(70, 139);
             const array_data_needed = data_needed.split(',');
             console.log(array_data_needed[1]);
-            $('#' + row).append('<td>' + array_data_needed[2] + ' °C</td>');
+            $('#' + row).append('<td>' + array_data_needed[2] + ' °C &nbsp; &nbsp; </td>');
             $('#' + row).append('<td>' + array_data_needed[3] + ' °C</td>');
             $('#' + row).append('<td>' + array_data_needed[7] + ' km/h</td>');
             $('#' + row).append('<td>' + array_data_needed[8] + ' cm</td>');
+            $('#' + row).append('<td> &nbsp; &nbsp; ' + array_data_needed[9] + ' cm</td>');
             $('#' + row).append('<td>' + array_data_needed[12] + '%</td>');
         };
         rawFile.send(null);
