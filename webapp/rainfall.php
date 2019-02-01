@@ -23,10 +23,9 @@ include('footer.php');
 <html>
 <head>
     <script src="jquery/jquery-3.3.1.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="Highcharts/highcharts.js"></script>
+    <script src="Highcharts/modules/exporting.js"></script>
+    <script src="Highcharts/modules/export-data.js"></script>
     <script src="js/graph_data_fetcher.js"></script>
 </head>
 <body>
