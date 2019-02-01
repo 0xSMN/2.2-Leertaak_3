@@ -52,7 +52,9 @@ public class Receiver {
     }
 
     public static synchronized void addData(ArrayList<Measurement> measurements) {
-        data.addAll(measurements);
+        if (measurements != null) {
+            data.addAll(measurements);
+        }
 //        System.out.println("Data added, there are now " + data.size() + " measurements");
     }
 

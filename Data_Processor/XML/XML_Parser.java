@@ -14,6 +14,11 @@ import java.util.ArrayList;
 public class XML_Parser {
 
     public static ArrayList<Measurement> ReadXML(String data) {
+
+        if (!data.startsWith("WEATHERDATA")) {
+            return null;
+        }
+
         String line;
         ArrayList<Measurement> measurements = new ArrayList<Measurement>();
         ArrayList<String> XMLstack = new ArrayList<String>();
