@@ -13,7 +13,7 @@ import java.util.Iterator;
 
 public class Sender implements Runnable{
     private ArrayList<Measurement> dataList = new ArrayList<Measurement>();
-    private static final String DatabaseHost = "145.37.157.109"; // de hostnaam of ip adress van de database
+    private static final String DatabaseHost = "0.0.0.0"; // de hostnaam of ip adress van de database
     private static final int DatabasePort = 3333; // de port waarop de data wordt ontvangen door de database
 
     public void run() {
@@ -26,8 +26,8 @@ public class Sender implements Runnable{
 
             while (true) {
                 dataList.addAll(Receiver.getData());
-                Iterator<Measurement> i = dataList.iterator();
                 if (!dataList.isEmpty()) {
+                    Iterator<Measurement> i = dataList.iterator();
                     while (i.hasNext()) {
                         Measurement m = i.next();
                         String output = m.GenSendString();
