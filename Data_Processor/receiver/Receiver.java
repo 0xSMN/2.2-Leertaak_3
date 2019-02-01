@@ -14,7 +14,7 @@ public class Receiver {
     private static final int maxnrofConnections=800;
     private static int connections = 0; // int to keep track of the number of connections
     private static ArrayList<Measurement> data = new ArrayList<Measurement>();
-    private static ExecutorService executioner  = Executors.newFixedThreadPool(maxnrofConnections/2);
+    private static ExecutorService executioner  = Executors.newFixedThreadPool(4); // map all activity to four threads
 
 
     public static void work() {
@@ -31,7 +31,7 @@ public class Receiver {
 //                    Thread conn = new Thread(new IncomingConn(connection));
 //                    conn.start();
 
-                    executioner.execute(new IncomingConn(connection));
+                    executioner.execute(new Thread(new IncomingConn(connection)));
                     connections++;
                     if (connections % 50 == 0) {
                         System.err.println("New connection established, there are " + connections + " connections");
