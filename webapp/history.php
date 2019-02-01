@@ -43,13 +43,13 @@ include('footer.php');
         </select><br><br>
     <p>Date:</p>
         <?php
-        $fourweeksago = date('Y-m-j',strtotime('-4 week'));
-        $today = date('Y-m-j');
+        $fourweeksago = date('Y-m-d',strtotime('-4 week'));
+        $today = date('Y-m-d');
         ?>
         <input title="date" type="date" name="date" value="<?php echo $today; ?>" min="<?php echo $fourweeksago; ?>" max="<?php echo $today; ?>">
         <br><br>
         <input type="submit" value="Submit" onclick="<?php $location = $_GET["location"];
-        $date = $_GET["date"]?>">
+        $thedate = $_GET["date"]?>">
     </form>
     <br>
 
@@ -58,7 +58,7 @@ include('footer.php');
     if($location==NULL){
         //Todo: change stn
         $location="1, Islamabad";
-        $date=$today;
+        $thedate=$today;
     }
 
     $value = (explode(", ",$location));
@@ -74,7 +74,7 @@ include('footer.php');
                 <th><?php echo $location ?></th>
                 <th style="visibility: hidden" class="current-location"><?php echo $stn ?></th>
                 <th></th><th></th><th></th><th></th>
-                <th style="text-align: right" class="current-date"><?php echo $date ?></th>
+                <th style="text-align: right" class="current-date"><?php echo $thedate ?></th>
             </tr>
             <tr class="head">
                 <th>Time</th> <!––in hours-->

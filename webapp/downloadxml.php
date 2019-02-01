@@ -42,8 +42,8 @@ include('footer.php');
         </select><br><br>
         <p>Date:</p>
         <?php
-        $fourweeksago = date('Y-m-j',strtotime('-4 week'));
-        $today = date('Y-m-j');
+        $fourweeksago = date('Y-m-d',strtotime('-4 week'));
+        $today = date('Y-m-d');
         ?>
         <input title="date" type="date" name="date" value="<?php echo $today; ?>" min="<?php echo $fourweeksago; ?>" max="<?php echo $today; ?>">
         <br><br><p>Hour:</p>
