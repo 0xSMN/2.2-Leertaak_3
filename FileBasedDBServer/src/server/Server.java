@@ -17,8 +17,9 @@ public class Server {
      */
     public Server() {
         try {
-            ss = new ServerSocket(3333);
-            System.out.println("Server started");
+        	int port = 3333;
+            ss = new ServerSocket(port);
+            System.out.println("Server started on port: " + port);
 
             while (shouldrun) {
                 Socket s = ss.accept();

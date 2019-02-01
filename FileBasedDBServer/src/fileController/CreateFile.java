@@ -3,7 +3,7 @@
 package fileController;
 
 import java.io.*;
-import java.util.List;
+import java.net.URLDecoder;
 import java.util.Map;
 
 public class CreateFile {
@@ -21,14 +21,23 @@ public class CreateFile {
     }
 
     private void InitFile(int stn_ID) {
-        String filepath = fc.DYNAMIC_FILE_PATH + "\\" + stn_ID;
+        //String filepath = getClass().getProtectionDomain().getCodeSource().getLocation() + fc.DYNAMIC_FILE_PATH + "/" + stn_ID;
+        String path = CreateFile.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String decodedPath = "";
+		try {
+			decodedPath = URLDecoder.decode(path, "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        String filepath = decodedPath + fc.DYNAMIC_FILE_PATH + "/" + stn_ID;;
         String filename = fc.DYNAMIC_FILE_NAME;
         BufferedWriter bw = null;
         FileWriter fw = null;
 
         try {
             new File(filepath).mkdirs();
-            File file = new File(filepath + "\\" + filename);
+            File file = new File(filepath + "/" + filename);
 
             // if file does not exists, then create one
             if (!file.exists()) {
@@ -75,14 +84,23 @@ public class CreateFile {
      * @Author Daniël Geerts
      */
     public void addDataToFile(Map<String,String> data, int stn_ID) {
-        String filepath = fc.DYNAMIC_FILE_PATH + "\\" + stn_ID;
+        //String filepath = getClass().getProtectionDomain().getCodeSource().getLocation() + fc.DYNAMIC_FILE_PATH + "/" + stn_ID;
+        String path = CreateFile.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String decodedPath = "";
+		try {
+			decodedPath = URLDecoder.decode(path, "UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        String filepath = decodedPath + fc.DYNAMIC_FILE_PATH + "/" + stn_ID;;
         String filename = fc.DYNAMIC_FILE_NAME;
         BufferedWriter bw = null;
         FileWriter fw = null;
 
         try {
             new File(filepath).mkdirs();
-            File file = new File(filepath + "\\" + filename);
+            File file = new File(filepath + "/" + filename);
 
             // if file doesnt exists, then create it
             if (!file.exists()) {
