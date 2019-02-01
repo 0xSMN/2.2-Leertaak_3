@@ -12,7 +12,7 @@ import java.util.Iterator;
 
 
 public class Sender implements Runnable{
-    private ArrayList<Measurement> dataList = new ArrayList<Measurement>();
+    private ArrayList<Measurement> dataList;
     private static final String DatabaseHost = "0.0.0.0"; // de hostnaam of ip adress van de database
     private static final int DatabasePort = 3333; // de port waarop de data wordt ontvangen door de database
 
@@ -25,7 +25,7 @@ public class Sender implements Runnable{
             DataOutputStream DataOut = new DataOutputStream(connection.getOutputStream());
 
             while (true) {
-                dataList.addAll(Receiver.getData());
+                dataList = Receiver.getData();
                 if (!dataList.isEmpty()) {
                     Iterator<Measurement> i = dataList.iterator();
                     while (i.hasNext()) {
@@ -35,6 +35,7 @@ public class Sender implements Runnable{
                         DataOut.writeUTF(output);
                     }
                 }
+                Thread.yield();
             }
 
 //            connection.close();
@@ -43,6 +44,7 @@ public class Sender implements Runnable{
         } catch (IOException ioe) {
             System.err.println(ioe.getMessage());
         }
+        System.out.println("Sender stopped");
     }
 }
 

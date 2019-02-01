@@ -14,10 +14,9 @@ public class Receiver {
     private static final int maxnrofConnections=800;
     private static int connections = 0; // int to keep track of the number of connections
     private static ArrayList<Measurement> data = new ArrayList<Measurement>();
-    private static ExecutorService executioner  = Executors.newFixedThreadPool(4); // map all activity to four threads
 
 
-    public static void work() {
+    public static void work(ExecutorService executioner) {
         Socket connection;
         try {
             ServerSocket server = new ServerSocket(PORT);
