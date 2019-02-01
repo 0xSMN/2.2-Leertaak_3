@@ -36,28 +36,24 @@ include('footer.php');
     <form method="get" action="">
         <p>Location:</p>
         <select title="location" name="location">
-            <!--todo: add real station numbers-->
-            <option value="1, Islamabad">Islamabad Airport</option>
-            <option value="2, Jiwani">Jiwani</option>
-            <option value="3, Karachi">Karachi Airport</option>
-            <option value="4, Lahore">Lahore Airport</option>
-            <option value="5, Nawabshah">Nawabshah</option>
-            <option value="6, Peshawar">Peshawar</option>
+            <option value="415710, Islamabad">Islamabad Airport</option>
+            <option value="417560, Jiwani">Jiwani</option>
+            <option value="417800, Karachi">Karachi Airport</option>
+            <option value="416410, Lahore">Lahore Airport</option>
+            <option value="417490, Nawabshah">Nawabshah</option>
+            <option value="415300, Peshawar">Peshawar</option>
         </select>
         <br><br>
         <input type="submit" value="Submit" oninput="<?php $location = $_GET["location"]; ?>">
     </form>
 
     <?php
-    //todo: remove test date
-    $tdate = '2019-01-29';
-    $hour = '01';
-    //$tdate = date('Y-m-j');
-    //$hour = date('H');
+    $tdate = date('Y-m-j');
+    $hour = date('H');
 
     //todo: change station nr
     if($location==NULL){
-        $location="1, Islamabad";
+        $location="415710, Islamabad";
     }
 
     $value = (explode(", ",$location));
