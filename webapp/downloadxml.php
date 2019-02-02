@@ -66,6 +66,7 @@ include('footer.php');
         $location = $value[1];
         $stn = $value[0]; ?>
         <a class="download-btn">Download</a>
+        <p class="demo"></p>
         <div style="visibility: hidden">
             <p class="date"> <?php echo $date; ?> </p>
             <p class="time"> <?php echo $time; ?> </p>
