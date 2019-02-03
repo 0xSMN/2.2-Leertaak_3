@@ -5,6 +5,8 @@ package server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Server {
 
@@ -25,7 +27,7 @@ public class Server {
                 Socket s = ss.accept();
                 ServerConnection sc = new ServerConnection(s, this);
                 sc.start();
-                System.out.println("New connection : " + sc.socket.getInetAddress());
+                System.out.println("Connection at " + new SimpleDateFormat("yyyy/MM/dd hh:mm:ss").format(new Date()) + " with : " + sc.socket.getInetAddress());
                 //connections.add(sc);
             }
         } catch (IOException e) {
