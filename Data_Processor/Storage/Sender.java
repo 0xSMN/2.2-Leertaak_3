@@ -3,9 +3,9 @@ package Storage;
 import receiver.Receiver;
 import XML.Measurement;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.rmi.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,36 +15,61 @@ public class Sender implements Runnable{
     private ArrayList<Measurement> dataList;
     private static final String DatabaseHost = "0.0.0.0"; // de hostnaam of ip adress van de database
     private static final int DatabasePort = 3333; // de port waarop de data wordt ontvangen door de database
+    private DataOutputStream DataOut;
+    private BufferedReader DataIn;
 
     public void run() {
 
-        try {
+        while (true) {
+            try {
+                Socket connection = makeConnection(DatabaseHost, DatabasePort);
 
+                if (connection != null) {
+//                set the input and output streams
+                    DataOut = new DataOutputStream(connection.getOutputStream());
+                    DataIn = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    connection.setSoTimeout(500);
 
-            Socket connection = new Socket(DatabaseHost, DatabasePort);
-            DataOutputStream DataOut = new DataOutputStream(connection.getOutputStream());
+                    // keep sending until the connection is closed by the database
+                    while (true) {
+                        try {
+                            if (DataIn.readLine() == null) {
+                                break; // the connection has been closed, breaking out of the loop and reconnecting
+                            }
+                        } catch (SocketTimeoutException ste) {
+                        } // connection is still alive, trying to send data
 
-            while (true) {
-                dataList = Receiver.getData();
-                if (!dataList.isEmpty()) {
-                    Iterator<Measurement> i = dataList.iterator();
-                    while (i.hasNext()) {
-                        Measurement m = i.next();
-                        String output = m.GenSendString();
-                        System.out.println(output);
-                        DataOut.writeUTF(output);
+                        dataList = Receiver.getData();
+                        if (!dataList.isEmpty()) {
+                            Iterator<Measurement> i = dataList.iterator();
+                            while (i.hasNext()) {
+                                Measurement m = i.next();
+                                String output = m.GenSendString();
+                                System.out.println(output);
+                                DataOut.writeUTF(output);
+                            }
+                        }
+                        Thread.yield();
                     }
                 }
-                Thread.yield();
             }
-
-//            connection.close();
-        } catch (UnknownHostException uhe) {
-            System.err.println("Cannot connect to database: unknown host");
-        } catch (IOException ioe) {
-            System.err.println(ioe.getMessage());
+            catch (IOException ioe) {
+                System.err.println(ioe.getMessage());
+            }
         }
-        System.out.println("Sender stopped");
+    }
+
+    private Socket makeConnection(String hostName, int port) {
+        try {
+            return new Socket(hostName, port);
+        }
+        catch (UnknownHostException uhe) {
+            System.err.println("UnknownHostException");
+        }
+        catch (IOException ioe) {
+            System.err.println("IOException");
+        }
+        return null;
     }
 }
 
