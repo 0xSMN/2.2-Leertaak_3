@@ -28,6 +28,12 @@ include('footer.php');
 </head>
 <body>
 <p class="title">Download XML</p>
+
+<button class="country-btn" value="pakistan" style="left: 1220px">PK</button>
+<button class="country-btn" value="afghanistan" style="left: 1260px">AF</button>
+<button class="country-btn" value="iran" style="left: 1300px">IR</button>
+<button class="country-btn" value="india" style="left: 1335px">IN</button>
+
 <div class="choices">
     <form method="get" action="">
         <p>Location:</p>
@@ -64,6 +70,7 @@ include('footer.php');
         <div style="visibility: hidden">
             <p class="date"> <?php echo $date; ?> </p>
             <p class="time"> <?php echo $time; ?> </p>
+            <p class="city"> <?php echo $location; ?></p>
             <p class="location"> <?php echo $stn; ?></p>
         </div>
     <?php } ?>

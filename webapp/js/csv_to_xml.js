@@ -38,7 +38,7 @@ $(document).ready(function() {
     function download(xmlfile) {
         let element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(xmlfile));
-        let name = date + "_h" + hour + ".xml";
+        let name = city + date + "_h" + hour + ".xml";
         element.setAttribute('download', name.replace(/ /g, ''));
         document.body.appendChild(element);
 
@@ -56,6 +56,7 @@ $(document).ready(function() {
     const date_split = date.split('-');
     const hour = $('.time').text();
     const location = $('.location').text();
+    const city = $('.city').text();
 
     //todo: change path when connected to db
     let fileName = "/home/ITV2E02/Documents/_database_/"+date_split[0]+"/"+date_split[1]+"/"+date_split[2]+"/"+location+"/"+date+"_h"+hour+".csv";

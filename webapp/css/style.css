@@ -166,6 +166,12 @@ a {
     box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.56);
 }
 
+.country-btn{
+    position: fixed;
+    padding: 5px 5px;
+    top: 130px;
+}
+
 .text {
     font-family: Arial;
     position: relative;
