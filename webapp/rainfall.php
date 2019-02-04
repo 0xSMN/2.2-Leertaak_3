@@ -51,7 +51,7 @@ include('footer.php');
 
     <?php
     //data needed by data fetcher
-    $tdate = date('Y-m-j');
+    $tdate = date('Y-m-d');
     $hour = date('H');
 
     if($location==NULL){
