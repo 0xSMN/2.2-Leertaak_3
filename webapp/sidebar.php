@@ -19,7 +19,7 @@
 				<li><a href="history.php">Weather History</a></li>
 				<li><a href="downloadxml.php">Download XML</a></li>
 			</ul>
-			<a href="//?logout=1"><button class="logout-button">Logout</button></a>
+			<a href="index.php?logout=1"><button class="logout-button">Logout</button></a>
 		</nav>
 	</div>
 </div>

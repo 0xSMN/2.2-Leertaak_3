@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-define("INCLUDED", true);
-
 $loggedin = false;
 
 $username = "root";
