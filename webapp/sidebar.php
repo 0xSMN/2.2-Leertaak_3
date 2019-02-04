@@ -19,8 +19,7 @@
 				<li><a href="history.php">Weather History</a></li>
 				<li><a href="downloadxml.php">Download XML</a></li>
 			</ul>
-            <!--todo: change path-->
-			<a href="http://localhost/2.2-Leertaak_3/webapp/?logout=1"><button class="logout-button">Logout</button></a>
+			<a href="//?logout=1"><button class="logout-button">Logout</button></a>
 		</nav>
 	</div>
 </div>
