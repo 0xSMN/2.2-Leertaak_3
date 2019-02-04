@@ -23,11 +23,12 @@ $(document).ready(function() {
         rawFile.send(null);
     }
 
+    //the choices submitted by the HTML form
     const current_date = $('.current-date').text();
     const current_date_split = current_date.split('-');
     const current_location = $('.current-location').text();
 
-    //Todo: change path when connected to database
+    //select the right file
     for (let i = 0; i < 10; i++) {
         readTextFile("/home/ITV2E02/Documents/_database_/" + current_date_split[0] + "/" + current_date_split[1] + "/" + current_date_split[2] + "/" + current_location + "/" + current_date + "_h0" + i +".csv", i);
     }

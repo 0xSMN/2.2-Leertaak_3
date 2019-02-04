@@ -11,7 +11,7 @@ include('header.php');
 
 if ($loggedin) {
 	include('sidebar.php');
-	include('welcome.php');
+	include('welcome.php'); //the text on the index page
 } else {
 	include('login.php');
 }

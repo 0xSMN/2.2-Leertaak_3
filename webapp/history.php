@@ -29,6 +29,7 @@ include('footer.php');
 
 <p class="title">Weather History</p>
 
+<!--country choice buttons-->
 <button class="country-btn" value="pakistan" style="left: 1210px"><img src="imgs/pakistan.png"/></button>
 <button class="country-btn" value="afghanistan" style="left: 1250px"><img src="imgs/afghanistan.png"/></button>
 <button class="country-btn" value="iran" style="left: 1290px"><img src="imgs/iran.png"/></button>
@@ -42,6 +43,7 @@ include('footer.php');
         </select><br><br>
     <p>Date:</p>
         <?php
+        // the date has to be a date between today and 4 weeks ago
         $fourweeksago = date('Y-m-d',strtotime('-4 week'));
         $today = date('Y-m-d');
         ?>
@@ -53,13 +55,13 @@ include('footer.php');
     <br>
 
     <?php
-
+    //set default
     if($location==NULL){
-        //Todo: change stn
         $location="415710, Islamabad";
         $thedate=$today;
     }
 
+    //data needed by data fetcher
     $value = (explode(", ",$location));
     $location = $value[1];
     $stn = $value[0];
@@ -86,7 +88,9 @@ include('footer.php');
             </tr>
         </thead>
         <tbody>
-        <?php for ($i = 0; $i < 24; $i++) {?>
+        <?php
+        //loop adds hours to the table
+        for ($i = 0; $i < 24; $i++) {?>
             <tr id="<?php echo $i ?>">
                 <td><?php if ($i < 10){
                     echo "0$i";

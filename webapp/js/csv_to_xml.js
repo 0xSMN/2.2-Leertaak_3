@@ -1,6 +1,6 @@
 $(document).ready(function() {
     function csvtoxml(file) {
-        //todo: csv to xml
+        //csv to xml
         const rawFile = new XMLHttpRequest();
         rawFile.open("GET", file, false);
         rawFile.onreadystatechange = function ()
@@ -38,7 +38,8 @@ $(document).ready(function() {
     function download(xmlfile) {
         let element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(xmlfile));
-        let name = city + date + "_h" + hour + ".xml";
+        let name;
+        name = city + date + "_h" + hour + ".xml";
         element.setAttribute('download', name.replace(/ /g, ''));
         document.body.appendChild(element);
 
@@ -47,18 +48,19 @@ $(document).ready(function() {
         document.body.removeChild(element);
     }
 
-
+    //download chosen file after clicking on download button on the Download XML page
     $(".download-btn").click(function() {
         csvtoxml(csvfile);
     });
 
+    //the choices submitted by the HTML form
     const date = $('.date').text();
     const date_split = date.split('-');
     const hour = $('.time').text();
     const location = $('.location').text();
     const city = $('.city').text();
 
-    //todo: change path when connected to db
+    //select the right file
     let fileName = "/home/ITV2E02/Documents/_database_/"+date_split[0]+"/"+date_split[1]+"/"+date_split[2]+"/"+location+"/"+date+"_h"+hour+".csv";
     let csvfile = fileName.replace(/ /g, '');
 

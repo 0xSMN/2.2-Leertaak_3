@@ -3,6 +3,7 @@
 $(document).ready(function() {
     let updatingValue = 0;
 
+    //read the file
     function readTextFile(file) {
         const rawFile = new XMLHttpRequest();
         rawFile.open("GET", file, false);
@@ -12,16 +13,16 @@ $(document).ready(function() {
                 return;
             }
             const allText = rawFile.responseText;
+            //select the last line of the file
             const data_needed = allText.substring(allText.length - 67, allText.length);
             const array_data_needed = data_needed.split(',');
-
+            //select the right value (PRCP is in the 7th row)
             updatingValue = parseFloat(array_data_needed[7]);
         };
         rawFile.send(null);
     }
 
-
-
+    //the choices submitted by the HTML form
     const t_date = $('.tdate').text();
     const t_date_split = t_date.split('-');
     const t_hour = $('.thour').text();
@@ -29,7 +30,7 @@ $(document).ready(function() {
     const city = $('.city').text();
 
 
-    //Todo: change path when connected to database
+    //select the right file
     function startReading() {
         let fileName = "/home/ITV2E02/Documents/_database_/" + t_date_split[0] + "/" + t_date_split[1] + "/" + t_date_split[2] + "/" + current_location + "/" + t_date + "_h" + t_hour + ".csv";
         let realFile = fileName.replace(/ /g, '');
@@ -38,7 +39,6 @@ $(document).ready(function() {
         setTimeout(startReading, 30000); //read every 30 seconds
     }
     startReading();
-
 
 
     Highcharts.chart('container', {

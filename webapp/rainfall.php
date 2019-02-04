@@ -33,6 +33,7 @@ include('footer.php');
 
 <p class="title">Rainfall</p>
 
+<!--country choice buttons-->
 <button class="country-btn" value="pakistan" style="left: 1210px"><img src="imgs/pakistan.png"/></button>
 <button class="country-btn" value="afghanistan" style="left: 1250px"><img src="imgs/afghanistan.png"/></button>
 <button class="country-btn" value="iran" style="left: 1290px"><img src="imgs/iran.png"/></button>
@@ -49,10 +50,10 @@ include('footer.php');
     </form>
 
     <?php
+    //data needed by data fetcher
     $tdate = date('Y-m-j');
     $hour = date('H');
 
-    //todo: change station nr
     if($location==NULL){
         $location="415710, Islamabad";
     }
@@ -64,6 +65,7 @@ include('footer.php');
     ?>
 
     <div style="visibility: hidden">
+        <!--data needed by data fetcher-->
         <p class="tdate"> <?php echo $tdate; ?> </p>
         <p class="thour"> <?php echo $hour; ?> </p>
         <p class="city"> <?php echo $location; ?></p>
@@ -71,7 +73,6 @@ include('footer.php');
     </div>
 </div>
 <div class="canvas" id="container"></div>
-
 
 </body>
 

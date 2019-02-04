@@ -8,6 +8,6 @@
 ?>
 <html>
 <body>
-&copy Weather Application
+&copy Weather Application by Clever Weather
 </body>
 </html>

@@ -29,6 +29,7 @@ include('footer.php');
 <body>
 <p class="title">Download XML</p>
 
+<!--country choice buttons-->
 <button class="country-btn" value="pakistan" style="left: 1210px"><img src="imgs/pakistan.png"/></button>
 <button class="country-btn" value="afghanistan" style="left: 1250px"><img src="imgs/afghanistan.png"/></button>
 <button class="country-btn" value="iran" style="left: 1290px"><img src="imgs/iran.png"/></button>
@@ -42,6 +43,7 @@ include('footer.php');
         </select><br><br>
         <p>Date:</p>
         <?php
+        // the date has to be a date between today and 4 weeks ago
         $fourweeksago = date('Y-m-d',strtotime('-4 week'));
         $today = date('Y-m-d');
         ?>
@@ -49,6 +51,7 @@ include('footer.php');
         <br><br><p>Hour:</p>
         <select title="hour" name="hour">
             <?php for ($i = 0; $i < 24; $i++){
+                //loop to put add all hours as options to the select box
                 $hour = sprintf("%02d", $i); ?>
                 <option value="<?php echo $hour ?>"><?php echo $hour ?>:00 </option>
             <?php } ?>
@@ -61,12 +64,12 @@ include('footer.php');
     <br>
 
     <?php
+    //the data needed in the data fetcher
     if ($location!=NULL){
         $value = (explode(", ",$location));
         $location = $value[1];
         $stn = $value[0]; ?>
         <a class="download-btn">Download</a>
-        <p class="demo"></p>
         <div style="visibility: hidden">
             <p class="date"> <?php echo $date; ?> </p>
             <p class="time"> <?php echo $time; ?> </p>
@@ -74,5 +77,6 @@ include('footer.php');
             <p class="location"> <?php echo $stn; ?></p>
         </div>
     <?php } ?>
+
 </div>
 </body>
