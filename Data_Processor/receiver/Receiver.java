@@ -5,17 +5,18 @@ import XML.Measurement;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
-
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class Receiver {
     private static final int PORT = 7789;
-    private static final int maxnrofConnections=4;
+    private static final int maxnrofConnections=800;
     private static int connections = 0; // int to keep track of the number of connections
     private static ArrayList<Measurement> data = new ArrayList<Measurement>();
 
 
-    public static void work() {
+    public static void work(ExecutorService executioner) {
         Socket connection;
         try {
             ServerSocket server = new ServerSocket(PORT);
@@ -26,10 +27,14 @@ public class Receiver {
                 if (connections < maxnrofConnections) {
                     connection = server.accept();
 
-                    Thread conn = new Thread(new IncomingConn(connection));
-                    conn.start();
+//                    Thread conn = new Thread(new IncomingConn(connection));
+//                    conn.start();
+
+                    executioner.execute(new Thread(new IncomingConn(connection)));
                     connections++;
-                    System.err.println("New connection established, there are " + connections + " connections");
+                    if (connections % 50 == 0) {
+                        System.err.println("New connection established, there are " + connections + " connections");
+                    }
                 }
                 else {
                     //System.out.println("Maximum number of threads exceeded");
@@ -46,7 +51,9 @@ public class Receiver {
     }
 
     public static synchronized void addData(ArrayList<Measurement> measurements) {
-        data.addAll(measurements);
+        if (measurements != null) {
+            data.addAll(measurements);
+        }
 //        System.out.println("Data added, there are now " + data.size() + " measurements");
     }
 

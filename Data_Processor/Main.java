@@ -1,6 +1,9 @@
 import receiver.*;
 import Storage.Sender;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -9,10 +12,12 @@ public class Main {
 
         //somewere around here, we set up a object to handle the data that has been send in
 
-        Thread s = new Thread(new Sender());
-        s.start();
+        ExecutorService executioner  = Executors.newFixedThreadPool(4); // map all activity to four threads
 
-        Receiver.work();
+        executioner.execute(new Thread(new Sender()));
+
+
+        Receiver.work(executioner);
     }
 
 }

@@ -25,7 +25,6 @@ public class IncomingConn implements Runnable
             while (true) {
                 // reads the incoming message and prints it to the console
 
-
                 //als dit if statement waar is, dan is er even geen data verzonden, de bestaande data kan worden verwerkt
                 if (!bin.ready() && !data.equals("")) {
                     //data laten verwerken door XML_parser
@@ -35,19 +34,19 @@ public class IncomingConn implements Runnable
                     //data legen
                     data= "";
                 }
-
                 if ((s = bin.readLine()) != null) {
                     data = data.concat(s);
                     data = data.concat("\n");
-                }
-                else {
+                } else {
                     break;
                 }
+
+                Thread.yield();
             }
 
             // now close the socket connection
             connection.close();
-            System.err.println("Connection closed");
+//            System.err.println("Connection closed");
 
             //System.out.println(data);
 
