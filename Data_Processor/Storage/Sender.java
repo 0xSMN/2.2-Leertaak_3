@@ -44,9 +44,7 @@ public class Sender implements Runnable{
                             Iterator<Measurement> i = dataList.iterator();
                             while (i.hasNext()) {
                                 Measurement m = i.next();
-                                String output = m.GenSendString();
-                                System.out.println(output);
-                                DataOut.writeUTF(output);
+                                DataOut.writeUTF(m.GenSendString());
                             }
                         }
                         Thread.yield();

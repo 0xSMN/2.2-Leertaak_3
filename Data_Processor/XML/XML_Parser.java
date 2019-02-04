@@ -15,7 +15,8 @@ public class XML_Parser {
 
     public static ArrayList<Measurement> ReadXML(String data) {
 
-        if (!data.startsWith("WEATHERDATA")) {
+        data = data.replace("<?xml version=\"1.0\"?>\n", "");
+        if (!data.trim().startsWith("<WEATHERDATA>")) {
             return null;
         }
 
