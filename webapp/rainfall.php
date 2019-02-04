@@ -33,10 +33,10 @@ include('footer.php');
 
 <p class="title">Rainfall</p>
 
-<button class="country-btn" value="pakistan" style="left: 1220px">PK</button>
-<button class="country-btn" value="afghanistan" style="left: 1260px">AF</button>
-<button class="country-btn" value="iran" style="left: 1300px">IR</button>
-<button class="country-btn" value="india" style="left: 1335px">IN</button>
+<button class="country-btn" value="pakistan" style="left: 1210px"><img src="imgs/pakistan.png"/></button>
+<button class="country-btn" value="afghanistan" style="left: 1250px"><img src="imgs/afghanistan.png"/></button>
+<button class="country-btn" value="iran" style="left: 1290px"><img src="imgs/iran.png"/></button>
+<button class="country-btn" value="india" style="left: 1330px"><img src="imgs/india.png"/></button>
 
 <div class="choices">
     <form method="get" action="">

@@ -168,8 +168,16 @@ a {
 
 .country-btn{
     position: fixed;
-    padding: 5px 5px;
+    width: 35px;
+    height: 35px;
+    background-color: transparent;
+    border-style: none;
     top: 130px;
+}
+
+.country-btn>img{
+    height: 30px;
+    width: 30px;
 }
 
 .text {
