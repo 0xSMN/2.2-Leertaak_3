@@ -1,13 +1,14 @@
 <?php
 session_start();
 
+define("INCLUDED", true);
+
 $loggedin = false;
 
 $username = "root";
 $password = "root";
 
 $login_error = "";
-
 
 if (!empty($_GET['logout'])) {
 	if ($_GET['logout'] == '1') {

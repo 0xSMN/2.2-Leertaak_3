@@ -7,7 +7,6 @@
  */
 
 include('config.php');
-
 include('header.php');
 
 if ($loggedin) {
@@ -24,6 +23,7 @@ include('footer.php');
 <head>
     <script src="jquery/jquery-3.3.1.js"></script>
     <script src="js/data_fetcher.js"></script>
+    <script src="js/weather_stations.js"></script>
 </head>
 <body>
 
@@ -32,13 +32,8 @@ include('footer.php');
 <div class="choices">
     <form method="get" action="">
     <p>Location:</p>
-        <select title="location" name="location">
-            <option value="415710, Islamabad">Islamabad Airport</option>
-            <option value="417560, Jiwani">Jiwani</option>
-            <option value="417800, Karachi">Karachi Airport</option>
-            <option value="416410, Lahore">Lahore Airport</option>
-            <option value="417490, Nawabshah">Nawabshah</option>
-            <option value="415300, Peshawar">Peshawar</option>
+        <select id="stations" title="location" name="location">
+            <!--options are added by weather_stations.js-->
         </select><br><br>
     <p>Date:</p>
         <?php

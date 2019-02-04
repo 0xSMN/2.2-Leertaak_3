@@ -1,3 +1,5 @@
+//This is the data fetcher for the rainfall graph
+
 $(document).ready(function() {
     let updatingValue = 0;
 

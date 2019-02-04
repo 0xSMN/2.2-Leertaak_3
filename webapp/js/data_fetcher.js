@@ -1,3 +1,5 @@
+//this is the data fetcher for the weather history table
+
 $(document).ready(function() {
     function readTextFile(file, row) {
         const rawFile = new XMLHttpRequest();
