@@ -32,7 +32,7 @@ $(document).ready(function() {
 
     //select the right file
     function startReading() {
-        let fileName = "/home/ITV2E02/Documents/_database_/" + t_date_split[0] + "/" + t_date_split[1] + "/" + t_date_split[2] + "/" + current_location + "/" + t_date + "_h" + t_hour + ".csv";
+        let fileName = "/DB/_database_/" + t_date_split[0] + "/" + t_date_split[1] + "/" + t_date_split[2] + "/" + current_location + "/" + t_date + "_h" + t_hour + ".csv";
         let realFile = fileName.replace(/ /g, '');
 
         readTextFile(realFile);

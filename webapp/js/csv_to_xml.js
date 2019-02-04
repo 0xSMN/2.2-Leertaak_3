@@ -61,7 +61,7 @@ $(document).ready(function() {
     const city = $('.city').text();
 
     //select the right file
-    let fileName = "/home/ITV2E02/Documents/_database_/"+date_split[0]+"/"+date_split[1]+"/"+date_split[2]+"/"+location+"/"+date+"_h"+hour+".csv";
+    let fileName = "/DB/_database_/"+date_split[0]+"/"+date_split[1]+"/"+date_split[2]+"/"+location+"/"+date+"_h"+hour+".csv";
     let csvfile = fileName.replace(/ /g, '');
 
 });

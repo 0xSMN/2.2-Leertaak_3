@@ -30,10 +30,10 @@ $(document).ready(function() {
 
     //select the right file
     for (let i = 0; i < 10; i++) {
-        readTextFile("/home/ITV2E02/Documents/_database_/" + current_date_split[0] + "/" + current_date_split[1] + "/" + current_date_split[2] + "/" + current_location + "/" + current_date + "_h0" + i +".csv", i);
+        readTextFile("/DB/_database_/" + current_date_split[0] + "/" + current_date_split[1] + "/" + current_date_split[2] + "/" + current_location + "/" + current_date + "_h0" + i +".csv", i);
     }
     for (let i = 10; i < 24; i++) {
-        readTextFile("/home/ITV2E02/Documents/_database_/" + current_date_split[0] + "/" + current_date_split[1] + "/" + current_date_split[2] + "/" + current_location + "/" + current_date + "_h" + i +".csv", i);
+        readTextFile("/DB/_database_/" + current_date_split[0] + "/" + current_date_split[1] + "/" + current_date_split[2] + "/" + current_location + "/" + current_date + "_h" + i +".csv", i);
     }
 
 });
